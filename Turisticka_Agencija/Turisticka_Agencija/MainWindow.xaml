@@ -3,10 +3,62 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Turisticka_Agencija"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Bata Travel - Prijava" Height="450" Width="800"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontSize="14"
+        FontWeight="Thin"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Icon="/logo.png">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.7*"></RowDefinition>
+            <RowDefinition Height="0.9*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.Column="2" Grid.Row="1" Margin="0,0,0,6" >
+            <Image Source="/logo.png"></Image>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+            <TextBlock FontWeight="DemiBold" Text="Prijava"></TextBlock>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
+            <TextBox materialDesign:HintAssist.Hint="Email"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     MinWidth="350"
+                     MaxWidth="350"
+                     AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="EmailUserName"/>
+        </Viewbox>
+        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
+            <PasswordBox materialDesign:HintAssist.Hint="Lozinka"
+                         MaxWidth="350"
+                         MinWidth="350"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                         AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="Password">
+            </PasswordBox>
+        </Viewbox>
+        <Viewbox Grid.Row="9" Grid.Column="2" MaxHeight="60">
+            <Button>
+                <TextBlock Text="Prijava" FontWeight="Thin" Foreground="White"></TextBlock>
+            </Button>
+        </Viewbox>
 
     </Grid>
 </Window>

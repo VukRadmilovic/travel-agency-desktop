@@ -23,13 +23,6 @@ namespace Turisticka_Agencija
         public MainWindow()
         {
             InitializeComponent();
-            //ODRADI SAMO PRVI PUT DA VIDIS DA LI TI RADI KAKO TREBA ENTITY!
-           /* using (var ctx = new Context())
-            {
-                var user = new User("Maja", "Varga", "maja.varga@mail.com", "lozinka321");
-                ctx.Users.Add(user);
-                ctx.SaveChanges();
-            }*/
         }
     }
 }

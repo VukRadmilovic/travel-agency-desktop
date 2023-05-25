@@ -1,0 +1,221 @@
+<mxfile host="app.diagrams.net" modified="2023-05-24T18:08:05.935Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="1G9muCHLHasu0lyUKqjj" version="21.3.3" type="device">
+  <diagram name="Page-1" id="G7imFhue5M31xoxFjqwN">
+    <mxGraphModel dx="2537" dy="936" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-3" value="Landing page sa pregledom putovanja za neregistrovanog korisnika i opcijom za login i registraciju" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="70" width="275" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-5" value="Login" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="267.5" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-6" value="Registracija" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="407.5" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-7" target="-i_yxLfr2Zb9kAXp6qsH-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-7" target="-i_yxLfr2Zb9kAXp6qsH-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="340" />
+              <mxPoint x="358" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-7" value="Pregled specifičnog putovanja za neregistrovanog korisnika (bez opcije odjavljivanja)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="370" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-8" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-5" target="-i_yxLfr2Zb9kAXp6qsH-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="330" as="sourcePoint" />
+            <mxPoint x="480" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-9" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-7" target="-i_yxLfr2Zb9kAXp6qsH-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="360" as="sourcePoint" />
+            <mxPoint x="590" y="310" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="670" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-10" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-6" target="-i_yxLfr2Zb9kAXp6qsH-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="527.5" y="330" as="sourcePoint" />
+            <mxPoint x="577.5" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-11" value="Landing page sa pregledom putovanja za registrovanog korisnika&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-14" value="Agentov dashboard koji nudi mogućnost ulaska u prozor za CRUD putovanja, atrakcije, smeštaje, restorane ili pregled izveštaja" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="117.5" y="540" width="150" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-15" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-14" target="-i_yxLfr2Zb9kAXp6qsH-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="500" as="sourcePoint" />
+            <mxPoint x="480" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-16" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="456" y="430" as="sourcePoint" />
+            <mxPoint x="456" y="570" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-17" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="-i_yxLfr2Zb9kAXp6qsH-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="430" as="sourcePoint" />
+            <mxPoint x="480" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-18" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-20" target="-i_yxLfr2Zb9kAXp6qsH-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="500" as="sourcePoint" />
+            <mxPoint x="480" y="450" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="760" y="540" />
+              <mxPoint x="760" y="370" />
+              <mxPoint x="760" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-20" value="Pregled specifičnog putovanja za registrovanog korisnika (sa opcijom odjavljivanja) sa opcijama za kupovinu i rezervaciju (dijalog boxovi)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="490" width="170" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-21" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.007;entryY=0.928;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-11" target="-i_yxLfr2Zb9kAXp6qsH-20">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="420" as="sourcePoint" />
+            <mxPoint x="480" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-26" value="Pregled kupljenih i rezervisanih putovanja" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-27" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-26" target="-i_yxLfr2Zb9kAXp6qsH-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="670" as="sourcePoint" />
+            <mxPoint x="480" y="620" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="440" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-28" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-11" target="-i_yxLfr2Zb9kAXp6qsH-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="550" as="sourcePoint" />
+            <mxPoint x="615" y="185" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800" y="630" />
+              <mxPoint x="800" y="370" />
+              <mxPoint x="800" y="185" />
+              <mxPoint x="800" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-29" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-26" target="-i_yxLfr2Zb9kAXp6qsH-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="670" as="sourcePoint" />
+            <mxPoint x="480" y="620" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="830" y="730" />
+              <mxPoint x="830" y="660" />
+              <mxPoint x="830" y="360" />
+              <mxPoint x="830" y="70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-30" value="Pregled prodatih putovanja u jednom mesecu" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="267.5" y="960" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-31" value="CRUD za smeštaje" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-33" value="CRUD za turističke atrakcije" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="880" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-34" value="Listanje, čitanje i brisanje putovanja" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-35" value="Dodavanje putovanja" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-36" value="Izmena putovanja" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="920" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-37" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-34" target="-i_yxLfr2Zb9kAXp6qsH-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="750" as="sourcePoint" />
+            <mxPoint x="480" y="700" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="80" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-39" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-35" target="-i_yxLfr2Zb9kAXp6qsH-34">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="750" as="sourcePoint" />
+            <mxPoint x="480" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-40" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-36" target="-i_yxLfr2Zb9kAXp6qsH-34">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="750" as="sourcePoint" />
+            <mxPoint x="480" y="700" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-20" y="950" />
+              <mxPoint x="-20" y="750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-41" value="CRUD za restorane" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="800" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-42" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-14" target="-i_yxLfr2Zb9kAXp6qsH-30">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="830" as="sourcePoint" />
+            <mxPoint x="480" y="780" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="190" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-43" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-14" target="-i_yxLfr2Zb9kAXp6qsH-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="830" as="sourcePoint" />
+            <mxPoint x="480" y="780" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="230" y="910" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-44" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.894;exitY=1.01;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-14" target="-i_yxLfr2Zb9kAXp6qsH-41">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="830" as="sourcePoint" />
+            <mxPoint x="480" y="780" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-i_yxLfr2Zb9kAXp6qsH-45" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="-i_yxLfr2Zb9kAXp6qsH-14" target="-i_yxLfr2Zb9kAXp6qsH-31">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="830" as="sourcePoint" />
+            <mxPoint x="480" y="780" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

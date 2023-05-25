@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Turisticka_Agencija.Models
 {
-    internal class User
+    public class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -32,5 +32,7 @@ namespace Turisticka_Agencija.Models
             Email = email;
             Password = password;
         }
+
+        public User() { }
     }
 }

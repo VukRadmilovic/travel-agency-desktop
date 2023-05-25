@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 
@@ -24,7 +11,6 @@ namespace Turisticka_Agencija
     public partial class MainWindow : Window
     {
         public LoginDTO LoginInfo { get; set; } = new();
-        private readonly UserService _userService = new();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +21,7 @@ namespace Turisticka_Agencija
         {
             ProgressSpinner.Visibility = Visibility.Visible;
             var isValidLogin = false;
-            await Task.Run(() => isValidLogin = _userService.TryLogin(LoginInfo));
+            await Task.Run(() => isValidLogin = UserService.TryLogin(LoginInfo));
             if (!isValidLogin)
             {
                 if (CredentialsErrorSnackbar.MessageQueue is { } messageQueue)

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="logo.png" />
+    <None Remove="PasswordDotsRegular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </Resource>
+    <Resource Include="PasswordDotsRegular.ttf" />
   </ItemGroup>
 
 </Project>

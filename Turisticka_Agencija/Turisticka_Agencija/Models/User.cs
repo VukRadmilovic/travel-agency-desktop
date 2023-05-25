@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Turisticka_Agencija
+namespace Turisticka_Agencija.Models
 {
     internal class User
     {

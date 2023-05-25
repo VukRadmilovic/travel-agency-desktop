@@ -4,14 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:validation="clr-namespace:Turisticka_Agencija.ValidationRules"
         mc:Ignorable="d"
         Title="Bata Travel - Prijava" Height="450" Width="800"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontSize="14"
+        
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Icon="/logo.png">
+        Icon="/logo.png" ScrollViewer.HorizontalScrollBarVisibility="Auto" MinWidth="350">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"></RowDefinition>
@@ -22,9 +24,9 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.7*"></RowDefinition>
-            <RowDefinition Height="0.9*"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.8*"></RowDefinition>
+            <RowDefinition Height="0.5*" ></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -39,26 +41,74 @@
         <Viewbox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
             <TextBlock FontWeight="DemiBold" Text="Prijava"></TextBlock>
         </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
-            <TextBox materialDesign:HintAssist.Hint="Email"
+        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70" MinWidth="300">
+            <TextBox x:Name="EmailField" materialDesign:HintAssist.Hint="Email"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      MinWidth="350"
                      MaxWidth="350"
-                     AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="EmailUserName"/>
+                     AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="EmailUserName" TextWrapping="WrapWithOverflow">
+                <TextBox.Text>
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+                            <validation:EmailFormatValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </Viewbox>
-        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
-            <PasswordBox materialDesign:HintAssist.Hint="Lozinka"
-                         MaxWidth="350"
-                         MinWidth="350"
-                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                         AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="Password">
+        <Viewbox Grid.Column="3" Grid.Row="9" HorizontalAlignment="Left" Margin="10,5,0,5" MaxHeight="45">
+            <ProgressBar x:Name="ProgressSpinner" IsIndeterminate="True"
+                         Visibility="Hidden"
+                         Style="{StaticResource MaterialDesignCircularProgressBar}"
+                         Value="50" HorizontalAlignment="Left" />
+        </Viewbox>
+
+        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70" MinWidth="300">
+            <PasswordBox Name="PasswordField" materialDesign:HintAssist.Hint="Lozinka"
+                     MaxWidth="350"
+                     MinWidth="350"
+                     validation:PasswordBoxAssistant.BindPassword="True"
+                     Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                     AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="Password">
+                <validation:PasswordBoxAssistant.BoundPassword>
+                    <Binding Path="Password" Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True"/>
+                            <validation:PasswordLengthValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </validation:PasswordBoxAssistant.BoundPassword>
             </PasswordBox>
         </Viewbox>
         <Viewbox Grid.Row="9" Grid.Column="2" MaxHeight="60">
-            <Button>
+            <Button x:Name="LoginButton" Click="LoginButton_OnClick">
                 <TextBlock Text="Prijava" FontWeight="Thin" Foreground="White"></TextBlock>
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=EmailField}" Value="False"/>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PasswordField}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
         </Viewbox>
-
+        <materialDesign:Snackbar x:Name="CredentialsErrorSnackbar"
+                                 IsActive="False"
+                                 VerticalAlignment="Top"
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="5"
+                                 HorizontalAlignment="Right"
+                                 MessageQueue="{materialDesign:MessageQueue}" MinWidth="300" Panel.ZIndex="1" Margin="0,0,10,0" FontSize="16">
+                <materialDesign:SnackbarMessage ActionContent="OK"  Content="Pogrešan email ili lozinka."/>
+            </materialDesign:Snackbar>
     </Grid>
 </Window>

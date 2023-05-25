@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-
+using Turisticka_Agencija.Models;
 
 namespace Turisticka_Agencija
 {

@@ -10,12 +10,16 @@
 
   <ItemGroup>
     <None Remove="logo.png" />
-    <None Remove="PasswordDotsRegular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoCompleteTextBox" Version="1.6.0" />
+    <PackageReference Include="BingMapsRESTToolkit" Version="1.1.4" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Fastenshtein" Version="1.0.0.8" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
+    <PackageReference Include="WPFTextBoxAutoComplete" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +27,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </Resource>
-    <Resource Include="PasswordDotsRegular.ttf" />
   </ItemGroup>
 
 </Project>

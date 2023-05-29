@@ -8,9 +8,7 @@
         xmlns:validation="clr-namespace:Turisticka_Agencija.ValidationRules"
         mc:Ignorable="d"
         Title="Bata Travel - Registracija" Height="500" Width="600"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
-        TextElement.FontSize="14"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png" MinWidth="350">

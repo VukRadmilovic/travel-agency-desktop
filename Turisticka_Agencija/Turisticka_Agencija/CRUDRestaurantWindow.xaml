@@ -6,7 +6,7 @@
         xmlns:converters="clr-namespace:Turisticka_Agencija.ValueConvertors"
         xmlns:maps="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:Turisticka_Agencija"
-        xmlns:localM="clr-namespace:Turisticka_Agencija.Models"
+        xmlns:localM="clr-namespace:Turisticka_Agencija.Utils"
         xmlns:acb="http://wpfcontrols.com/"
         xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -15,11 +15,21 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Restorani" Height="500" Width="650">
+        Title="Bata Travel - Restorani" Height="500" Width="650" AutomationProperties.Name="windows">
     <Window.Resources>
         <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
+        <DataTemplate x:Key="StateTemplate">
+            <Grid>
+                <TextBlock Text="{Binding Path=FormattedAddress}" />
+            </Grid>
+        </DataTemplate>
         <converters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"/>
+        <CommandBinding  Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudAccommodation}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
+        <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.ClearFieldsCommand}" Executed="ClearFieldsButton_OnClick"></CommandBinding>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"></RowDefinition>
@@ -42,20 +52,28 @@
             <MenuItem x:Name="menuItem" Header="Novi unos"
                       FontSize="{Binding ActualHeight, Converter={StaticResource FontSizeConverter}, ElementName=menuItem, Mode=OneWay}"
                       Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
-                <MenuItem Header="Restoran"
+                <MenuItem Header="_Restoran"
+                          x:Name="RestaurantCRUD"
+                          Click="RestaurantCRUD_OnClick"
+                          InputGestureText="Alt+T"
                               Icon="{materialDesign:PackIcon Kind=Restaurant}"
                               IsCheckable="True"
                               IsChecked="True" Padding="24,5,24,5"/>
 
                 <MenuItem Header="Smeštaj"
-                              Icon="{materialDesign:PackIcon Kind=Home}"
+                          InputGestureText="Alt+S"
+                          x:Name="AccomodationCRUD"
+                          Click="AccommodationCRUD_OnClick"
+                          Icon="{materialDesign:PackIcon Kind=Home}"
                               FontWeight="Thin" Padding="24,5,24,5"/>
 
                 <MenuItem Header="Atrakcija"
+                          InputGestureText="Alt+A"
                               Icon="{materialDesign:PackIcon Kind=Location}"
                               FontWeight="Thin" Padding="24,5,24,5"/>
 
                 <MenuItem Header="Putovanje"
+                          InputGestureText="Alt+P"
                               Icon="{materialDesign:PackIcon Kind=BagSuitcase}"
                               FontWeight="Thin" Padding="24,5,24,5"/>
             </MenuItem>
@@ -100,18 +118,20 @@
                                  FontSize="30"
                                  materialDesign:HintAssist.Hint="Naziv restorana"
                                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                                 TextWrapping="Wrap"/>
+                                 TextWrapping="Wrap" TextChanged="NameFilterField_TextChanged"/>
                     <Viewbox MinWidth="450" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox  Content="Veganski"
+                            <CheckBox x:Name="IsVeganFriendlyFilterCb"  Content="Veganski"
                                            Style="{StaticResource MaterialDesignCheckBox}"
                                            Tag="True"
                                            FontSize="22"
-                                           Margin="20,0,20,0"/>
-                            <CheckBox  Content="Bezglutenski"
+                                           IsChecked="{x:Null}"
+                                           Margin="20,0,20,0" IsThreeState="True" Click="IsVeganFriendlyFilterCb_Click"/>
+                            <CheckBox x:Name="IsGlutenFreeFriendlyFilterCb"  Content="Bezglutenski"
                                            FontSize="22"
+                                           IsChecked="{x:Null}"
                                            Style="{StaticResource MaterialDesignCheckBox}"
-                                           Tag="True"/>
+                                           Tag="True" IsThreeState="True" Click="IsGlutenFreeFriendlyFilterCb_Click"/>
                         </StackPanel>
                     </Viewbox>
                 </StackPanel>
@@ -130,14 +150,24 @@
                           AlternatingRowBackground="#33E9967A"
                           SelectionMode="Single"
                           HorizontalScrollBarVisibility="Disabled"
-                          Padding="10,10,0,0" FontSize="14">
+                          Padding="10,10,0,0" FontSize="14"
+                          SelectionChanged="RestaurantsTable_SelectionChanged">
+            <DataGrid.Resources>
+                <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
+                       BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Setter Property="KeyboardNavigation.IsTabStop"
+                            Value="False" />
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Naziv"
-                                Binding="{Binding Name}"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Name, Mode=OneWay}"
                                 IsReadOnly="True"/>
 
-                <DataGridCheckBoxColumn Binding="{Binding IsVeganFriendly}"
+                <DataGridCheckBoxColumn Binding="{Binding IsVeganFriendly, Mode=OneWay}"
                                 Header="Veganski"
+                                CellStyle="{StaticResource CellStyle}"
                                 IsReadOnly="True"
                                 CanUserResize="False">
                     <DataGridCheckBoxColumn.ElementStyle>
@@ -146,23 +176,28 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsVeganFriendly}" Value="True">
                                     <Setter Property="Background" Value="Green"/>
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=Column.IsReadOnly, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridCell}}}" Value="True">
                                     <Setter Property="IsHitTestVisible" Value="False" />
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
                         </Style>
                     </DataGridCheckBoxColumn.ElementStyle>
                     <DataGridCheckBoxColumn.HeaderStyle>
                         <Style TargetType="{x:Type DataGridColumnHeader}"
                            BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
                         </Style>
                     </DataGridCheckBoxColumn.HeaderStyle>
                 </DataGridCheckBoxColumn>
                 <DataGridCheckBoxColumn Header="Bezglutenski"
-                                Binding="{Binding IsGlutenFreeFriendly}"
+                                CellStyle="{StaticResource CellStyle}"
+                                Binding="{Binding IsGlutenFreeFriendly, Mode=OneWay}"
                                 IsReadOnly="True"
                                 CanUserResize="False">
                     <DataGridCheckBoxColumn.ElementStyle>
@@ -171,18 +206,22 @@
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsGlutenFreeFriendly}" Value="True">
                                     <Setter Property="Background" Value="Green"/>
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=Column.IsReadOnly, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridCell}}}" Value="True">
                                     <Setter Property="IsHitTestVisible" Value="False" />
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
                         </Style>
                     </DataGridCheckBoxColumn.ElementStyle>
                     <DataGridCheckBoxColumn.HeaderStyle>
                         <Style TargetType="{x:Type DataGridColumnHeader}"
                            BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
                             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
                         </Style>
                     </DataGridCheckBoxColumn.HeaderStyle>
                 </DataGridCheckBoxColumn>
@@ -195,12 +234,11 @@
                             Background="DarkSalmon"
                             BorderThickness="0.5,0.5,0.5,0.5"
                             CornerRadius="8,8,8,8">
-                    <maps:Map Margin="2"
+                    <maps:Map x:Name="Map" Margin="2"
                                   CredentialsProvider="sZuSgR7v5bz2vg9wVM59~Qfpz84S4i9QJtmeokKTzAQ~AjleVBuRM03IHDNl1GLAcpYYT1lY_lo8Tylvsk2iwhlP-dAar9aOaKFkdqdxjePN"
                                   Center="45.2396,19.8227,0.0000"
                                   ZoomLevel="13"
-                                  ScaleVisibility="Hidden">
-                        <maps:Pushpin Location="45.2396,19.8227"/>
+                                  ScaleVisibility="Hidden" IsTabStop="False">
                     </maps:Map>
                 </Border>
             </Grid>
@@ -209,7 +247,7 @@
                    Grid.Column="0" Grid.Row="3"
                    VerticalAlignment="Top"
                    Grid.ColumnSpan="2"
-                   Margin="5,10,0,0"></Separator>
+                   Margin="5,10,0,0" IsTabStop="False"></Separator>
 
         <Viewbox Grid.Column="0"
                  Grid.Row="3"
@@ -229,10 +267,12 @@
                      FontSize="18"
                      MaxWidth="400"
                      materialDesign:HintAssist.Hint="Naziv restorana"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     AutomationProperties.IsRequiredForForm="True">
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}" TextChanged="NameField_TextChanged">
                     <TextBox.Text>
-                        <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding Path="CurrentRestaurant.Name"
+                                 UpdateSourceTrigger="PropertyChanged"
+                                 Mode="TwoWay"
+                                 NotifyOnValidationError="True">
                             <Binding.ValidationRules>
                                 <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                             </Binding.ValidationRules>
@@ -242,17 +282,23 @@
 
                 <acb:AutoCompleteTextBox
                 HorizontalAlignment="Stretch"
+                x:Name="LocationField"
                 MinWidth="400"
                 MaxWidth="400"
+                DisplayMember="FormattedAddress"
+                ItemTemplate="{StaticResource StateTemplate}"
                 FontSize="18"
                 Margin="0,30,0,0"
                 Grid.Row="1"
                 Provider="{StaticResource ResourceKey=AutocompleteProvider}"
-                SelectedItem="{Binding suggestion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource MaterialAutoCompleteTextBox}"
-                Watermark="Adresa" HorizontalContentAlignment="Stretch">
+                Watermark="Adresa" HorizontalContentAlignment="Stretch" LostFocus="LocationField_LostFocus" TextInput="LocationField_TextInput" TargetUpdated="LocationField_TargetUpdated">
                     <acb:AutoCompleteTextBox.Text>
-                        <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding Path="SelectedAddress"
+                                 Mode="OneWayToSource"
+                                 UpdateSourceTrigger="PropertyChanged"
+                                 NotifyOnValidationError="True">
                             <Binding.ValidationRules>
                                 <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                             </Binding.ValidationRules>
@@ -262,8 +308,6 @@
                         <TextBlock
                         Text="..." />
                     </acb:AutoCompleteTextBox.LoadingContent>
-
-
                 </acb:AutoCompleteTextBox>
 
 
@@ -272,12 +316,12 @@
                 Grid.Row="2"
                 MaxHeight="60"
                 HorizontalAlignment="Center">
-                    <CheckBox Margin="0, 0, 0,0"
+                    <CheckBox x:Name="IsVeganFriendlyCb" Margin="0, 0, 0,0"
                           FontSize="22">
                         Veganski
                     </CheckBox>
 
-                    <CheckBox Margin="15, 0, 0,0"
+                    <CheckBox x:Name="IsGlutenFreeFriendlyCb" Margin="15, 0, 0,0"
                           FontSize="22">
                         Bezglutenski
                     </CheckBox>
@@ -300,6 +344,7 @@
                      Grid.Row="0"
                      MinWidth="400"
                      MaxWidth="400"
+                     Text="{Binding CurrentRestaurant.InfoLink}"
                      FontSize="18"
                      materialDesign:HintAssist.Hint="Link restorana"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}">
@@ -310,6 +355,8 @@
                          Grid.RowSpan="2"
                          MaxWidth="400"
                          MinWidth="400"
+                         x:Name="DescriptionField"
+                         Text="{Binding CurrentRestaurant.Description}"
                          FontSize="18"
                          Margin="0,30,0,0"
                          MinLines="5"
@@ -330,32 +377,22 @@
                         "
                         MaxHeight="25" VerticalAlignment="Bottom">
                 <Button x:Name="ClearButton"
+                        Command="{x:Static local:CRUDRestaurantWindow.ClearFieldsCommand}"
                         MaxHeight="19"
+                        Style="{StaticResource MaterialDesignFlatMidBgButton}"
                         Padding="10,2,10,2" VerticalAlignment="Bottom">
                     <TextBlock Text="Očisti polja"
                                FontSize="9"
                                FontWeight="Thin"
                                Foreground="White"></TextBlock>
-                    <Button.Style>
-                        <Style TargetType="Button"
-                               BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
-                            <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=EmailField}" Value="False"/>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PasswordField}" Value="False"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="True"/>
-                                </MultiDataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
                 </Button>
-
                 <Button x:Name="CreateButton"
+                        Click="CreateButton_OnClick"
                         MaxHeight="19"
                         Padding="10,4,10,4"
-                        Margin="10,0,0,0" VerticalContentAlignment="Center" VerticalAlignment="Bottom" >
+                        Margin="10,0,0,0"
+                        VerticalContentAlignment="Center"
+                        VerticalAlignment="Bottom" >
                     <TextBlock Text="Dodaj"
                                FontSize="9"
                                FontWeight="Thin"
@@ -363,13 +400,15 @@
                     <Button.Style>
                         <Style TargetType="Button"
                                BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
                             <Style.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=EmailField}" Value="False"/>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PasswordField}" Value="False"/>
+                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameField}" Value="False"/>
+                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=LocationField}" Value="False"/>
+                                        <Condition Binding="{Binding Path=IsModifyMode}" Value="False"/>
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="True"/>
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
                                 </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -379,7 +418,7 @@
                 <Button x:Name="ModifyButton"
                         Padding="10,4,10,4"
                         MaxHeight="19"
-                        Margin="10,0,0,0" VerticalAlignment="Bottom" >
+                        Margin="10,0,0,0" VerticalAlignment="Bottom" Click="ModifyButton_Click" >
                     <TextBlock Text="Izmeni"
                                FontWeight="Thin"
                                FontSize="9"
@@ -387,13 +426,15 @@
                     <Button.Style>
                         <Style TargetType="Button"
                                BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
+                            <Setter Property="IsEnabled" Value="False"></Setter>
                             <Style.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=EmailField}" Value="False"/>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PasswordField}" Value="False"/>
+                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=NameField}" Value="False"/>
+                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=LocationField}" Value="False"/>
+                                        <Condition Binding="{Binding Path=IsModifyMode}" Value="True"/>
                                     </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="True"/>
+                                    <Setter Property="IsEnabled" Value="True"></Setter>
                                 </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -403,7 +444,8 @@
                 <Button x:Name="DeleteButton"
                         Padding="10,4,10,4"
                         MaxHeight="19"
-                        Margin="10,0,0,0" Background="Red" >
+                        IsEnabled="False"
+                        Margin="10,0,0,0" Background="Red" Click="DeleteButton_Click" >
                     <TextBlock Text="Obriši"
                                FontSize="9"
                                FontWeight="Thin"
@@ -411,19 +453,22 @@
                     <Button.Style>
                         <Style TargetType="Button"
                                BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
-                            <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=EmailField}" Value="False"/>
-                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=PasswordField}" Value="False"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="True"/>
-                                </MultiDataTrigger>
-                            </Style.Triggers>
                         </Style>
                     </Button.Style>
                 </Button>
+
             </StackPanel>
         </Viewbox>
+        <materialDesign:Snackbar x:Name="SuccessSnackbar"
+                                 IsActive="False"
+                                 VerticalAlignment="Top"
+                                 Grid.Row="0"
+                                 Grid.RowSpan="2"
+                                 Grid.Column="1"
+                                 Grid.ColumnSpan="2"
+                                 HorizontalAlignment="Right"
+                                 MessageQueue="{materialDesign:MessageQueue}" MinWidth="300" Panel.ZIndex="1"
+                                 Margin="0,20,10,0" FontSize="16">
+        </materialDesign:Snackbar>
     </Grid>
 </Window>

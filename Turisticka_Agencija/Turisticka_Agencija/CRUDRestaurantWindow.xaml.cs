@@ -9,11 +9,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
-
+using BingMapsRESTToolkit;
 using Microsoft.Maps.MapControl.WPF;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Utils;
+using Location = Microsoft.Maps.MapControl.WPF.Location;
 
 namespace Turisticka_Agencija
 {
@@ -25,7 +26,11 @@ namespace Turisticka_Agencija
         private readonly ObservableCollection<Restaurant> _restaurants = new();
         public static RoutedCommand NavigateToCrudRestaurant = new();
         public static RoutedCommand NavigateToCrudAccommodation = new();
+        public static RoutedCommand LogoutCommand = new();
         public static RoutedCommand ClearFieldsCommand = new();
+        public static RoutedCommand SaveCommand = new();
+        public static RoutedCommand ModifyCommand = new();
+        public static RoutedCommand DeleteCommand = new();
         private Restaurant _selectedRestaurant;
         private Collection<Restaurant> _searchedRestaurants = new();
         private CustomDataContext dataContext = new();
@@ -39,8 +44,19 @@ namespace Turisticka_Agencija
             VirtualizingStackPanel.SetVirtualizationMode(RestaurantsTable, VirtualizationMode.Recycling);
             NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.T, ModifierKeys.Alt));
             NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
-            ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.C, ModifierKeys.Control));
+            ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
+            SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+            ModifyCommand.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
+            DeleteCommand.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+            LogoutCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
             DataContext = dataContext;
+        }
+
+        private void Logout(object sender, RoutedEventArgs e)
+        {
+            MainWindow loginWindow = new MainWindow();
+            loginWindow.Show();
+            Close();
         }
 
         private void RestaurantCRUD_OnClick(object sender, RoutedEventArgs e)
@@ -211,6 +227,7 @@ namespace Turisticka_Agencija
 
         private void CreateButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (!CreateButton.IsEnabled) return;
             if (dataContext.SelectedAddress.FormattedAddress == "" || dataContext.SelectedAddress == null)
             {
                 MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -271,6 +288,8 @@ namespace Turisticka_Agencija
             if (selectedRestaurant == null) return;
             FillFields(selectedRestaurant);
             DeleteButton.IsEnabled = true;
+            NameField.Focus();
+            NameField.CaretIndex = selectedRestaurant.Name.Length;
         }
 
         private class CustomDataContext : INotifyPropertyChanged
@@ -333,6 +352,7 @@ namespace Turisticka_Agencija
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!DeleteButton.IsEnabled) return;
             MessageBoxResult result = MessageBox.Show("Da li ste sigurni da želite da obrišete označeni restoran?" +
                                                       " Nakon brisanja, podaci o restoranu će trajno biti obrisani.", "Potvrda brisanja", MessageBoxButton.YesNo, MessageBoxImage.Question);
             MessageBoxManager.Yes = "Da";
@@ -369,6 +389,7 @@ namespace Turisticka_Agencija
 
         private void ModifyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!ModifyButton.IsEnabled) return;
             dataContext.CurrentRestaurant = _selectedRestaurant;
             if (dataContext.SelectedAddress == null || dataContext.SelectedAddress.FormattedAddress == "")
             {

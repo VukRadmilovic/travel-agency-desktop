@@ -62,6 +62,7 @@ namespace Turisticka_Agencija
                 PasswordMask.Visibility = System.Windows.Visibility.Visible;
 
                 PasswordMask.Focus();
+                PasswordMask.CaretIndex = userInfo.Password.Length;
             }
             else
             {
@@ -69,6 +70,14 @@ namespace Turisticka_Agencija
                 PasswordMask.Visibility = System.Windows.Visibility.Collapsed;
 
                 PasswordField.Focus();
+            }
+        }
+
+        private void PackIcon_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PackIcon_MouseDown(sender,null);
             }
         }
     }

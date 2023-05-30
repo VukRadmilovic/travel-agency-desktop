@@ -57,6 +57,7 @@ namespace Turisticka_Agencija.Services
 
         public static List<double> GeocodeAddress()
         {
+            if (Address == null || Address.FormattedAddress == "") return null;
             string addressEncoded = HttpUtility.UrlEncode(Address.FormattedAddress.Trim());
             string _geocodePartialUrl = "https://dev.virtualearth.net/REST/v1/Locations?q=";
             string _geocodeKeyPartialUrl =

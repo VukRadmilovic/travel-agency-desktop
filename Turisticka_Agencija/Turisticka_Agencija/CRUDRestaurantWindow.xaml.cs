@@ -189,6 +189,7 @@ namespace Turisticka_Agencija
 
             Map.Children.Clear();
             DeleteButton.IsEnabled = false;
+            NameField.Focus();
         }
 
 
@@ -257,19 +258,8 @@ namespace Turisticka_Agencija
 
         private async void LocationField_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (!dataContext.IsModifyMode && (dataContext.SelectedAddress == null ||
-                                              dataContext.SelectedAddress.FormattedAddress == ""))
-            {
-                MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             if (dataContext.IsModifyMode && (dataContext.SelectedAddress == null ||
-                                             RestaurantService.Address.FormattedAddress == dataContext.SelectedAddress.FormattedAddress ))
-            {
-                MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                                             RestaurantService.Address.FormattedAddress == dataContext.SelectedAddress.FormattedAddress )) return;
             RestaurantService.Address = dataContext.SelectedAddress;
             Map.Children.Clear();
             List<double> coordinates;
@@ -375,11 +365,6 @@ namespace Turisticka_Agencija
 
         private void LocationField_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
         {
-        }
-
-        private void NameField_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         private void Window_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)

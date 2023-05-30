@@ -11,7 +11,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Icon="/logo.png" MinWidth="350">
+        Icon="/logo.png" MinWidth="350" IsTabStop="False">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>
@@ -44,12 +44,12 @@
             <TextBlock FontWeight="DemiBold" Text="Registracija"></TextBlock>
         </Viewbox>
 
-        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
+        <Viewbox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70" >
             <TextBox x:Name="NameField" materialDesign:HintAssist.Hint="Ime"
-                     MinWidth="400"
+                     MinWidth="500"
                      MaxWidth="500"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     AutomationProperties.IsRequiredForForm="True" FontSize="16" TextWrapping="WrapWithOverflow">
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     FontSize="20" TextWrapping="Wrap">
                 <TextBox.Text>
                     <Binding Path="Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
@@ -62,10 +62,10 @@
 
         <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
             <TextBox x:Name="SurnameField" materialDesign:HintAssist.Hint="Prezime"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     MinWidth="400"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     MinWidth="500"
                      MaxWidth="500"
-                     AutomationProperties.IsRequiredForForm="True" FontSize="16" TextWrapping="WrapWithOverflow">
+                     AutomationProperties.IsRequiredForForm="True" FontSize="20" TextWrapping="WrapWithOverflow">
                 <TextBox.Text>
                     <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
@@ -78,10 +78,10 @@
 
         <Viewbox Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" MaxHeight="70">
             <TextBox x:Name="EmailField" materialDesign:HintAssist.Hint="Email"
-                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                     MinWidth="400"
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     MinWidth="500"
                      MaxWidth="500"
-                     AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="EmailUserName" TextWrapping="WrapWithOverflow">
+                     FontSize="20" InputScope="EmailUserName" TextWrapping="WrapWithOverflow">
                 <TextBox.Text>
                     <Binding Path="Email" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
@@ -98,10 +98,10 @@
             <StackPanel Orientation="Horizontal">
                 <PasswordBox Name="PasswordField" materialDesign:HintAssist.Hint="Lozinka"
                              MaxWidth="500"
-                             MinWidth="400"
+                             MinWidth="500"
                              validation:PasswordBoxAssistant.BindPassword="True"
-                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                             AutomationProperties.IsRequiredForForm="True" FontSize="16" InputScope="Password">
+                             Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                             AutomationProperties.IsRequiredForForm="True" FontSize="20" InputScope="Password">
                     <validation:PasswordBoxAssistant.BoundPassword>
                         <Binding Path="Text" Mode="TwoWay" ElementName="PasswordMask">
                             <Binding.ValidationRules>
@@ -114,10 +114,10 @@
                 <TextBox x:Name="PasswordMask"
                          materialDesign:HintAssist.Hint="Lozinka"
                          MaxWidth="500"
-                         MinWidth="400"
+                         MinWidth="500"
                          Visibility="Collapsed"
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                         FontSize="16">
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         FontSize="20" IsTabStop="False">
                     <TextBox.Text>
                         <Binding Path="Password" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
@@ -127,14 +127,14 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>
-                <materialDesign:PackIcon Kind="Eye" VerticalAlignment="Center" Margin="-20,0,0,0" Background="AliceBlue" MouseDown="PackIcon_MouseDown" Cursor="Hand"></materialDesign:PackIcon>
+                <materialDesign:PackIcon IsTabStop="True" Kind="Eye" VerticalAlignment="Center" Margin="-40,0,0,0" Background="AliceBlue" MouseDown="PackIcon_MouseDown" Cursor="Hand" FontSize="20" MinHeight="30" MinWidth="25" KeyUp="PackIcon_KeyUp"></materialDesign:PackIcon>
             </StackPanel>
         </Viewbox>
         <Viewbox Grid.Row="13" Grid.Column="2" MaxHeight="60">
             <Button x:Name="RegisterButton" Click="RegisterButton_OnClickButton_OnClick">
                 <TextBlock Text="Registracija" FontWeight="Thin" Foreground="White"></TextBlock>
                 <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatMidBgButton}">
                         <Setter Property="IsEnabled" Value="False"/>
                         <Style.Triggers>
                             <MultiDataTrigger>

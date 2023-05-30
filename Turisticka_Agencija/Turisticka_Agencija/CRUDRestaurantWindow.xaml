@@ -45,7 +45,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.8*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Menu  Grid.Row="0" Grid.ColumnSpan="3"
@@ -244,7 +244,7 @@
                                   CredentialsProvider="sZuSgR7v5bz2vg9wVM59~Qfpz84S4i9QJtmeokKTzAQ~AjleVBuRM03IHDNl1GLAcpYYT1lY_lo8Tylvsk2iwhlP-dAar9aOaKFkdqdxjePN"
                                   Center="45.2396,19.8227,0.0000"
                                   ZoomLevel="13"
-                                  ScaleVisibility="Hidden" IsTabStop="False">
+                                  ScaleVisibility="Hidden" IsTabStop="False" Cursor="Hand" >
                     </maps:Map>
                 </Border>
             </Grid>
@@ -269,11 +269,11 @@
 
                 <TextBox x:Name="NameField"
                      Grid.Row="0"
-                     MinWidth="400"
-                     FontSize="18"
-                     MaxWidth="400"
+                     MinWidth="450"
+                     FontSize="20"
+                     MaxWidth="450"
                      materialDesign:HintAssist.Hint="Naziv restorana"
-                     Style="{StaticResource MaterialDesignOutlinedTextBox}" TextChanged="NameField_TextChanged">
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}">
                     <TextBox.Text>
                         <Binding Path="CurrentRestaurant.Name"
                                  UpdateSourceTrigger="PropertyChanged"
@@ -289,12 +289,12 @@
                 <acb:AutoCompleteTextBox
                 HorizontalAlignment="Stretch"
                 x:Name="LocationField"
-                MinWidth="400"
-                MaxWidth="400"
+                MinWidth="450"
+                MaxWidth="450"
                 DisplayMember="FormattedAddress"
                 ItemTemplate="{StaticResource StateTemplate}"
-                FontSize="18"
-                Margin="0,30,0,0"
+                FontSize="20"
+                Margin="0,40,0,0"
                 Grid.Row="1"
                 Provider="{StaticResource ResourceKey=AutocompleteProvider}"
                 SelectedItem="{Binding SelectedAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -348,10 +348,10 @@
 
                 <TextBox x:Name="InfoLinkField"
                      Grid.Row="0"
-                     MinWidth="400"
-                     MaxWidth="400"
+                     MinWidth="450"
+                     MaxWidth="450"
                      Text="{Binding CurrentRestaurant.InfoLink}"
-                     FontSize="18"
+                     FontSize="20"
                      materialDesign:HintAssist.Hint="Link restorana"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}">
                 </TextBox>
@@ -359,14 +359,14 @@
                 <TextBox 
                          Grid.Row="1"
                          Grid.RowSpan="2"
-                         MaxWidth="400"
-                         MinWidth="400"
+                         MaxWidth="450"
+                         MinWidth="450"
                          x:Name="DescriptionField"
                          Text="{Binding CurrentRestaurant.Description}"
-                         FontSize="18"
+                         FontSize="20"
                          Margin="0,30,0,0"
-                         MinLines="5"
-                         MaxLines="5"
+                         MinLines="4"
+                         MaxLines="4"
                          VerticalAlignment="Stretch"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Opis"

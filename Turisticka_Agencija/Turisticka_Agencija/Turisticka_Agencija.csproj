@@ -29,4 +29,8 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Windows\User\" />
+  </ItemGroup>
+
 </Project>

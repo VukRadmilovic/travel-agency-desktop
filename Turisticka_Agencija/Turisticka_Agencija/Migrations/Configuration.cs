@@ -4,8 +4,9 @@
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Turisticka_Agencija.Utils;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Turisticka_Agencija.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {
         public Configuration()
         {
@@ -13,7 +14,7 @@
             ContextKey = "Turisticka_Agencija.Context";
         }
 
-        protected override void Seed(Turisticka_Agencija.Context context)
+        protected override void Seed(Context context)
         {
             //  This method will be called after migrating to the latest version.
 

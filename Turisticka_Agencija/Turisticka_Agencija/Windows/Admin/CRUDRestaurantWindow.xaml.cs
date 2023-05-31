@@ -9,10 +9,13 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
+using BingMapsRESTToolkit;
 using Microsoft.Maps.MapControl.WPF;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Admin;
+using Address = Turisticka_Agencija.Services.Address;
+using Location = Microsoft.Maps.MapControl.WPF.Location;
 
 namespace Turisticka_Agencija;
 
@@ -27,6 +30,7 @@ public partial class CRUDRestaurantWindow : Window
     private readonly CustomDataContext _dataContext = new();
     public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
     public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
+    public static RoutedCommand NavigateToCrudPlace { get; } = new();
     public static RoutedCommand LogoutCommand { get; } = new();
     public static RoutedCommand ClearFieldsCommand { get; } = new();
     public static RoutedCommand SaveCommand { get; } = new();
@@ -42,8 +46,8 @@ public partial class CRUDRestaurantWindow : Window
         VirtualizingPanel.SetVirtualizationMode(RestaurantsTable, VirtualizationMode.Recycling);
         DataContext = _dataContext;
 
-        NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
-        NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
+        NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
+        NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
         ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
         SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         ModifyCommand.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
@@ -388,5 +392,12 @@ public partial class CRUDRestaurantWindow : Window
     private void AddressFilterField_OnTextChanged(object sender, TextChangedEventArgs e)
     {
         Search();
+    }
+
+    private void PlaceCRUD_OnClick(object sender, RoutedEventArgs e)
+    {
+        var placeWindow = new CRUDPlaceWindow();
+        placeWindow.Show();
+        Close();
     }
 }

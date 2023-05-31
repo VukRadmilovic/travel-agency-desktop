@@ -25,7 +25,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static admin:CRUDPlaceWindow.NavigateToCrudAccommodation}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
-        <CommandBinding Command="{x:Static admin:CRUDPlaceWindow.NavigateToCrudPlace}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
+        <CommandBinding Command="{x:Static admin:CRUDPlaceWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDPlaceWindow.ClearFieldsCommand}" Executed="ClearFieldsButton_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDPlaceWindow.SaveCommand}" Executed="CreateButton_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDPlaceWindow.ModifyCommand}" Executed="ModifyButton_Click"></CommandBinding>

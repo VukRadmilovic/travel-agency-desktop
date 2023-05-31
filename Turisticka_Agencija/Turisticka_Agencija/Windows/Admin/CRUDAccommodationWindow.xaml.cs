@@ -27,6 +27,7 @@ namespace Turisticka_Agencija.Windows.Admin
         private readonly CustomDataContext _dataContext = new();
         public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
         public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
+        public static RoutedCommand NavigateToCrudPlace { get; } = new();
         public static RoutedCommand LogoutCommand { get; } = new();
         public static RoutedCommand ClearFieldsCommand { get; } = new();
         public static RoutedCommand SaveCommand { get; } = new();
@@ -43,7 +44,7 @@ namespace Turisticka_Agencija.Windows.Admin
             DataContext = _dataContext;
 
             NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
-            NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
+            NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
             ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             ModifyCommand.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
@@ -356,6 +357,13 @@ namespace Turisticka_Agencija.Windows.Admin
         private void AddressFilterField_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             Search();
+        }
+
+        private void PlaceCRUD_OnClick(object sender, RoutedEventArgs e)
+        {
+            var placeWindow = new CRUDPlaceWindow();
+            placeWindow.Show();
+            Close();
         }
     }
 }

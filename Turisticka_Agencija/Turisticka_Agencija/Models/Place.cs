@@ -29,5 +29,7 @@ namespace Turisticka_Agencija.Models
             Description = description;
             InfoLink = infoLink;
         }
+
+        public Place() {}
     }
 }

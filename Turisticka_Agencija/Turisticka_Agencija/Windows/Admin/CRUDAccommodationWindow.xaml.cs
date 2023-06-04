@@ -33,6 +33,7 @@ namespace Turisticka_Agencija.Windows.Admin
         public static RoutedCommand SaveCommand { get; } = new();
         public static RoutedCommand ModifyCommand { get; } = new();
         public static RoutedCommand DeleteCommand { get; } = new();
+        public static RoutedCommand SearchCommand { get; } = new();
 
         public CRUDAccommodationWindow()
         {
@@ -50,6 +51,7 @@ namespace Turisticka_Agencija.Windows.Admin
             ModifyCommand.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
             DeleteCommand.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
             LogoutCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
+            SearchCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
         }
 
         private void Logout(object sender, RoutedEventArgs e)
@@ -57,6 +59,12 @@ namespace Turisticka_Agencija.Windows.Admin
             var loginWindow = new MainWindow();
             loginWindow.Show();
             Close();
+        }
+
+        private void SearchShortcut(object sender, RoutedEventArgs e)
+        {
+            NameFilterField.Clear();
+            NameFilterField.Focus();
         }
 
         private void RestaurantCRUD_OnClick(object sender, RoutedEventArgs e)

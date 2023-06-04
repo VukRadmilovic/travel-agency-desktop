@@ -36,6 +36,7 @@ public partial class CRUDPlaceWindow : Window
         NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
         NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
         ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
+        SearchCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
         SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
         ModifyCommand.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
         DeleteCommand.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
@@ -49,12 +50,19 @@ public partial class CRUDPlaceWindow : Window
     public static RoutedCommand SaveCommand { get; } = new();
     public static RoutedCommand ModifyCommand { get; } = new();
     public static RoutedCommand DeleteCommand { get; } = new();
+    public static RoutedCommand SearchCommand { get; } = new();
 
     private void Logout(object sender, RoutedEventArgs e)
     {
         var loginWindow = new MainWindow();
         loginWindow.Show();
         Close();
+    }
+
+    private void SearchShortcut(object sender, RoutedEventArgs e)
+    {
+        NameFilterField.Clear();
+        NameFilterField.Focus();
     }
 
     private void AccommodationCRUD_OnClick(object sender, RoutedEventArgs e)

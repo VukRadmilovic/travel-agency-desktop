@@ -46,5 +46,10 @@ namespace Turisticka_Agencija.Models
             Start = start;
             End = end;
         }
+
+        public override string ToString()
+        {
+            return Id + " " + Name;
+        }
     }
 }

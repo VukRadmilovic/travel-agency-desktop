@@ -13,7 +13,7 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Turističke agencije" Height="500" Width="650" AutomationProperties.Name="windows" MinWidth="600">
+        Title="Bata Travel - Turističke agencije" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600">
     <Window.Resources>
         <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
         <DataTemplate x:Key="StateTemplate">

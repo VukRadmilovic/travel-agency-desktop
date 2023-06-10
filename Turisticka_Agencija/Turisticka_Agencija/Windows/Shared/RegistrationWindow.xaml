@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:validation="clr-namespace:Turisticka_Agencija.ValidationRules"
         mc:Ignorable="d"
-        Title="Bata Travel - Registracija" Height="500" Width="600"
+        Title="Bata Travel - Registracija" Height="600" Width="750"
         Background="{DynamicResource MaterialDesignPaper}"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"

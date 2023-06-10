@@ -41,7 +41,8 @@
                        Foreground="White"></TextBlock>
         </Button>
 
-        <Button Grid.Row="2" Grid.ColumnSpan="2" x:Name="ViewButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200">
+        <Button Grid.Row="2" Grid.ColumnSpan="2" x:Name="ViewButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" Click="ViewButton_Click"
+                IsEnabled="False">
             <TextBlock Text="Pregled detalja"
                        FontWeight="Thin"
                        Foreground="White"></TextBlock>
@@ -57,7 +58,7 @@
                   AlternatingRowBackground="#33E9967A"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
-                  Padding="10,10,0,0" FontSize="14">
+                  Padding="10,10,0,0" FontSize="14" SelectionChanged="TripsTable_SelectionChanged" MouseDoubleClick="TripsTable_MouseDoubleClick">
             <DataGrid.Resources>
                 <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                        BasedOn="{StaticResource MaterialDesignDataGridCell}">

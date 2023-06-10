@@ -62,5 +62,39 @@ namespace Turisticka_Agencija.Windows.Shared
             window.Show();
             Close();
         }
+
+        private void ViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            ViewOneTripWindow window = new((Trip)TripsTable.SelectedItem);
+            Hide();
+            window.ShowDialog();
+            Show();
+        }
+
+        private void TripsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedTrip = (Trip) TripsTable.SelectedItem;
+            if (selectedTrip == null)
+            {
+                ViewButton.IsEnabled = false;
+                return;
+            }
+
+            ViewButton.IsEnabled = true;
+        }
+
+        private void TripsTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedTrip = (Trip)TripsTable.SelectedItem;
+            if (selectedTrip == null)
+            {
+                return;
+            }
+
+            ViewOneTripWindow window = new(selectedTrip);
+            Hide();
+            window.ShowDialog();
+            Show();
+        }
     }
 }

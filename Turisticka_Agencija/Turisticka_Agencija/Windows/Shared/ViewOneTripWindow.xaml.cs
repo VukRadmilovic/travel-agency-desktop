@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Turisticka_Agencija.Models;
+using Turisticka_Agencija.Services;
 
 namespace Turisticka_Agencija.Windows.Shared
 {
@@ -30,6 +31,25 @@ namespace Turisticka_Agencija.Windows.Shared
             InitializeComponent();
 
             MessageBox.Show(trip.ToString());
+            BuildMenuItems();
+        }
+
+        private void BuildMenuItems()
+        {
+            Menu.Items.Clear();
+
+            var helpMenuItem = new MenuItem
+            {
+                Header = "Pomoć",
+                Name = "helpMenuItem",
+            };
+            helpMenuItem.Click += helpMenuItem_Click;
+            Menu.Items.Add(helpMenuItem);
+        }
+
+        private void helpMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

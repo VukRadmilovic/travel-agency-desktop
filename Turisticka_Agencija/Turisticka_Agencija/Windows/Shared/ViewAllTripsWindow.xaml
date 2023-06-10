@@ -12,7 +12,7 @@
         Title="Bata Travel - Putovanja" Height="600" Width="750" MinWidth="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="6*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -21,25 +21,11 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="LoginButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="LoginButton_Click"
-                Visibility="{Binding Source={x:Static local:UserService.IsLoggedIn}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-            <TextBlock Text="Prijava"
-                       FontWeight="Thin"
-                       Foreground="White"></TextBlock>
-        </Button>
-        <Button Grid.Column="1" x:Name="RegisterButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="RegisterButton_Click"
-                Visibility="{Binding Source={x:Static local:UserService.IsLoggedIn}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
-            <TextBlock Text="Registracija"
-                       FontWeight="Thin"
-                       Foreground="White"></TextBlock>
-        </Button>
-
-        <Button Grid.ColumnSpan="2" x:Name="LogoutButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200"
-                Visibility="{Binding Source={x:Static local:UserService.IsLoggedIn}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="LogoutButton_Click">
-            <TextBlock Text="Odjava"
-                       FontWeight="Thin"
-                       Foreground="White"></TextBlock>
-        </Button>
+        <Menu Grid.Row="0" Grid.ColumnSpan="4"
+              HorizontalContentAlignment="Stretch"
+              x:Name="Menu"
+              Background="AliceBlue"
+              VerticalContentAlignment="Stretch" Padding="0,1,0,0"/>
 
         <Button Grid.Row="2" Grid.ColumnSpan="2" x:Name="ViewButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" Click="ViewButton_Click"
                 IsEnabled="False">

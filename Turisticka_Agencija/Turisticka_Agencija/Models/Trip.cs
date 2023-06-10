@@ -19,18 +19,19 @@ namespace Turisticka_Agencija.Models
         public double EndLongitude { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public List<Place> Places { get; set; }
         public double Price { get; set; }
-        public Accommodation? Accommodation { get; set; }
-        public Restaurant Restaurant { get; set; }
-        public string Transport { get; set; }
+        public string Description { get; set; }
+        public List<Place> Places { get; set; } // attractions
+        public List<Accommodation> Accommodations { get; set; }
+        public List<Restaurant> Restaurants { get; set; }
+        public int QuantitySold { get; set; }
 
         public Trip()
         {
 
         }
 
-        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, List<Place> places, double price, Accommodation? accommodation, Restaurant restaurant, string transport, DateTime start, DateTime end)
+        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, List<Place> places, List<Accommodation> accommodations, List<Restaurant> restaurants, int quantitySold)
         {
             Id = id;
             Name = name;
@@ -38,13 +39,14 @@ namespace Turisticka_Agencija.Models
             StartLongitude = startLongitude;
             EndLatitude = endLatitude;
             EndLongitude = endLongitude;
-            Places = places;
-            Price = price;
-            Accommodation = accommodation;
-            Restaurant = restaurant;
-            Transport = transport;
             Start = start;
             End = end;
+            Price = price;
+            Description = description;
+            Places = places;
+            Accommodations = accommodations;
+            Restaurants = restaurants;
+            QuantitySold = quantitySold;
         }
 
         public override string ToString()

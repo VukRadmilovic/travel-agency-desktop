@@ -37,23 +37,66 @@ namespace Turisticka_Agencija.Windows.Shared
             TripsTable.ItemsSource = _trips;
             VirtualizingPanel.SetIsVirtualizing(TripsTable, true);
             VirtualizingPanel.SetVirtualizationMode(TripsTable, VirtualizationMode.Recycling);
+            BuildMenuItems();
         }
 
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        private void BuildMenuItems()
+        {
+            Menu.Items.Clear();
+
+            if (!UserService.IsLoggedIn)
+            {
+                var loginMenuItem = new MenuItem
+                {
+                    Header = "Prijava",
+                    Name = "loginMenuItem",
+                };
+                loginMenuItem.Click += loginMenuItem_Click;
+                Menu.Items.Add(loginMenuItem);
+
+                var registerMenuItem = new MenuItem
+                {
+                    Header = "Registracija",
+                    Name = "registerMenuItem",
+                };
+                registerMenuItem.Click += registerMenuItem_Click;
+                Menu.Items.Add(registerMenuItem);
+            }
+            else
+            {
+                var logoutMenuItem = new MenuItem
+                {
+                    Header = "Odjava",
+                    Name = "logoutMenuItem",
+                };
+                logoutMenuItem.Click += logoutMenuItem_Click;
+                Menu.Items.Add(logoutMenuItem);
+            }
+
+            var helpMenuItem = new MenuItem
+            {
+                Header = "Pomoć",
+                Name = "helpMenuItem",
+            };
+            helpMenuItem.Click += helpMenuItem_Click;
+            Menu.Items.Add(helpMenuItem);
+        }
+
+        private void loginMenuItem_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow window = new();
             window.Show();
             Close();
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void registerMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Registration window = new();
             window.Show();
             Close();
         }
 
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        private void logoutMenuItem_Click(object sender, RoutedEventArgs e)
         {
             UserService.LoggedUser = null;
             UserService.IsLoggedIn = false;
@@ -61,6 +104,11 @@ namespace Turisticka_Agencija.Windows.Shared
             ViewAllTripsWindow window = new();
             window.Show();
             Close();
+        }
+
+        private void helpMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)

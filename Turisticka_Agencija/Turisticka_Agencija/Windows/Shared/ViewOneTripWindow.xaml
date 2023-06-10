@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Turisticka_Agencija.Windows.Shared"
+        xmlns:services="clr-namespace:Turisticka_Agencija.Services"
+        xmlns:converters="clr-namespace:Turisticka_Agencija.ValueConvertors"
         mc:Ignorable="d"
-        Title="ViewOneTripWindow" Height="600" Width="750">
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontWeight="Thin"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Icon="/logo.png"
+        Title="Bata Travel - Pregled jednog putovanja" Height="650" Width="1100" MinWidth="600">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="4"
+              HorizontalContentAlignment="Stretch"
+              x:Name="Menu"
+              Background="AliceBlue"
+              VerticalContentAlignment="Stretch" Padding="0,1,0,0"/>
     </Grid>
 </Window>

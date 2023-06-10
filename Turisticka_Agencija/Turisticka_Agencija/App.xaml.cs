@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Threading.Tasks;
 using System.Windows;
 using Turisticka_Agencija.Models;
@@ -56,9 +57,23 @@ namespace Turisticka_Agencija
             double price = random.Next(500, 5000);
             Accommodation? accommodation = GenerateRandomAccommodation();
             Restaurant restaurant = GenerateRandomRestaurant();
+
+            List<Accommodation> accommodations = new List<Accommodation>();
+            List<Restaurant> restaurants = new List<Restaurant>();
+
+            if (accommodation != null)
+            {
+                accommodations.Add(accommodation);
+            }
+
+            if (restaurant != null)
+            {
+                restaurants.Add(restaurant);
+            }
+
             DateTime start = DateTime.Now;
             DateTime end = DateTime.Now;
-            string transport = "BUS";
+            string description = "YES";
 
             return new Trip(
                 id: 0,
@@ -67,13 +82,14 @@ namespace Turisticka_Agencija
                 startLongitude: startLongitude,
                 endLatitude: endLatitude,
                 endLongitude: endLongitude,
-                places: places,
-                price: price,
-                accommodation: accommodation,
-                restaurant: restaurant,
-                transport: transport,
                 start: start,
-                end: end
+                end: end,
+                price: price,
+                description: description,
+                places: places,
+                accommodations: accommodations,
+                restaurants: restaurants,
+                quantitySold: 0
             );
         }
 

@@ -9,7 +9,7 @@ namespace Turisticka_Agencija.Models
 {
     //Nece biti abstract posto entity framework kada vraca base klasu vuce i derived klase, sto ne treba da radi kada
     //samo treba izlistati turisticke atrakcije
-    internal class Place
+    public class Place
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

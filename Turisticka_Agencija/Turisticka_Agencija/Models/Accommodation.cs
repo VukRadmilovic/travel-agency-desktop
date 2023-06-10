@@ -2,7 +2,7 @@
 
 namespace Turisticka_Agencija.Models
 {
-    internal class Accommodation
+    public class Accommodation
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

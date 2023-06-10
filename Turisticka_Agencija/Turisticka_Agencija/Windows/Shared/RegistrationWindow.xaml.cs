@@ -3,6 +3,9 @@ using System.Windows;
 using System.Windows.Input;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
+using Turisticka_Agencija.Windows.Admin;
+using Turisticka_Agencija.Windows.Shared;
+using Key = System.Windows.Input.Key;
 
 namespace Turisticka_Agencija;
 
@@ -21,9 +24,15 @@ public partial class Registration : Window
 
     private async void RegisterButton_OnClickButton_OnClick(object sender, RoutedEventArgs e)
     {
+        await Register();
+    }
+
+    private async Task Register()
+    {
         ProgressSpinner.Visibility = Visibility.Visible;
         var isValidRegistration = false;
-        await Task.Run(() => isValidRegistration = UserService.TryRegistration(userInfo));
+        User user = null;
+        await Task.Run(() => (isValidRegistration, user) = UserService.TryRegistration(userInfo));
         if (!isValidRegistration)
         {
             if (CredentialsErrorSnackbar.MessageQueue is { } messageQueue)
@@ -33,6 +42,18 @@ public partial class Registration : Window
         {
             if (CredentialsErrorSnackbar.MessageQueue is { } messageQueue)
                 await Task.Factory.StartNew(() => messageQueue.Enqueue("Uspešna registracija."));
+            if (user.Type == UserType.Agent)
+            {
+                CRUDPlaceWindow window = new();
+                window.Show();
+                Close();
+            }
+            else
+            {
+                ViewAllTripsWindow window = new();
+                window.Show();
+                Close();
+            }
         }
 
         ProgressSpinner.Visibility = Visibility.Hidden;
@@ -60,5 +81,13 @@ public partial class Registration : Window
     private void PackIcon_KeyUp(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Enter) PackIcon_MouseDown(sender, null);
+    }
+
+    private void Window_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            Register();
+        }
     }
 }

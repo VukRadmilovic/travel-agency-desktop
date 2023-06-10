@@ -16,15 +16,23 @@ namespace Turisticka_Agencija.Models
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public UserType Type { get; set; }
 
-        public User(string name, string surname, string email, string password)
+        public User(string name, string surname, string email, string password, UserType type)
         {
             Name = name;
             Surname = surname;
             Email = email;
             Password = password;
+            Type = type;
         }
 
         public User() { }
+    }
+
+    public enum UserType
+    {
+        Agent,
+        User
     }
 }

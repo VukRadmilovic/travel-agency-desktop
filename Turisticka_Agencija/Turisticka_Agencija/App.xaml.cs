@@ -20,7 +20,7 @@ namespace Turisticka_Agencija
         {
             base.OnStartup(e);
 
-            GenerateRandomTrips();
+            //GenerateRandomTrips();
         }
 
         private static void GenerateRandomTrips()

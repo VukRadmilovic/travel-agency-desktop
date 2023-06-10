@@ -11,6 +11,7 @@ using System.Windows.Input;
 using Microsoft.Maps.MapControl.WPF;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
+using Turisticka_Agencija.Windows.Shared;
 
 namespace Turisticka_Agencija.Windows.Admin;
 
@@ -54,7 +55,7 @@ public partial class CRUDPlaceWindow : Window
 
     private void Logout(object sender, RoutedEventArgs e)
     {
-        var loginWindow = new MainWindow();
+        var loginWindow = new LoginWindow();
         loginWindow.Show();
         Close();
     }

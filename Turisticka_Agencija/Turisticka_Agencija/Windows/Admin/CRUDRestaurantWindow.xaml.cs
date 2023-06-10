@@ -14,6 +14,7 @@ using Microsoft.Maps.MapControl.WPF;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Admin;
+using Turisticka_Agencija.Windows.Shared;
 using Address = Turisticka_Agencija.Services.Address;
 using Location = Microsoft.Maps.MapControl.WPF.Location;
 
@@ -59,7 +60,7 @@ public partial class CRUDRestaurantWindow : Window
 
     private void Logout(object sender, RoutedEventArgs e)
     {
-        var loginWindow = new MainWindow();
+        var loginWindow = new LoginWindow();
         loginWindow.Show();
         Close();
     }

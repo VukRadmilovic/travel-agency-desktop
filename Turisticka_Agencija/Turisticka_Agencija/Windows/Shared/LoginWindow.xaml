@@ -1,4 +1,4 @@
-﻿<Window x:Class="Turisticka_Agencija.MainWindow"
+﻿<Window x:Class="Turisticka_Agencija.Windows.Shared.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,7 @@
         TextElement.FontSize="14"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Icon="/logo.png" ScrollViewer.HorizontalScrollBarVisibility="Auto" MinWidth="350" IsTabStop="False">
+        Icon="/logo.png" ScrollViewer.HorizontalScrollBarVisibility="Auto" MinWidth="350" IsTabStop="False" KeyDown="Window_KeyDown">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"></RowDefinition>

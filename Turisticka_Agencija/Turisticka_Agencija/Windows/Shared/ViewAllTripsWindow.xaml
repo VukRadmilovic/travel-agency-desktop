@@ -1,0 +1,91 @@
+﻿<Window x:Class="Turisticka_Agencija.Windows.Shared.ViewAllTripsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Turisticka_Agencija.Services"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontWeight="Thin"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Icon="/logo.png"
+        Title="Bata Travel - Putovanja" Height="600" Width="750" MinWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="LoginButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="LoginButton_Click"
+                Visibility="{Binding Source={x:Static local:UserService.IsLoggedIn}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <TextBlock Text="Prijava"
+                       FontWeight="Thin"
+                       Foreground="White"></TextBlock>
+        </Button>
+        <Button Grid.Column="1" x:Name="RegisterButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Click="RegisterButton_Click"
+                Visibility="{Binding Source={x:Static local:UserService.IsLoggedIn}, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
+            <TextBlock Text="Registracija"
+                       FontWeight="Thin"
+                       Foreground="White"></TextBlock>
+        </Button>
+
+        <Button Grid.ColumnSpan="2" x:Name="LogoutButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200"
+                Visibility="{Binding Source={x:Static local:UserService.IsLoggedIn}, Converter={StaticResource BooleanToVisibilityConverter}}" Click="LogoutButton_Click">
+            <TextBlock Text="Odjava"
+                       FontWeight="Thin"
+                       Foreground="White"></TextBlock>
+        </Button>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" x:Name="ViewButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200">
+            <TextBlock Text="Pregled detalja"
+                       FontWeight="Thin"
+                       Foreground="White"></TextBlock>
+        </Button>
+
+        <DataGrid x:Name="TripsTable"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AlternationCount="2"
+                  AlternatingRowBackground="#33E9967A"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Padding="10,10,0,0" FontSize="14">
+            <DataGrid.Resources>
+                <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
+                       BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Setter Property="KeyboardNavigation.IsTabStop"
+                            Value="False" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Name, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Od"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Start, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Do"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding End, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Cena"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Price, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

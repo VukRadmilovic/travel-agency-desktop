@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
+using Turisticka_Agencija.Windows.Shared;
 
 namespace Turisticka_Agencija.Windows.Admin
 {
@@ -56,7 +57,7 @@ namespace Turisticka_Agencija.Windows.Admin
 
         private void Logout(object sender, RoutedEventArgs e)
         {
-            var loginWindow = new MainWindow();
+            var loginWindow = new LoginWindow();
             loginWindow.Show();
             Close();
         }

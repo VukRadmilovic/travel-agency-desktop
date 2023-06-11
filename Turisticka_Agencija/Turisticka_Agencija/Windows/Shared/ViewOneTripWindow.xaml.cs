@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Maps.MapControl.WPF;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
@@ -37,6 +38,7 @@ namespace Turisticka_Agencija.Windows.Shared
             _trip = trip;
             BuildMenuItems();
             FillChosenTripData();
+            RefreshButtons();
         }
 
         private void BuildMenuItems()
@@ -68,7 +70,9 @@ namespace Turisticka_Agencija.Windows.Shared
             {
                 foreach (Accommodation accommodation in _trip.Accommodations)
                 {
-                    AddPin(accommodation.Latitude, accommodation.Longitude, accommodation.Name, Brushes.Red);
+                    var packIcon = new PackIcon();
+                    packIcon.Kind = PackIconKind.Home;
+                    AddPin(accommodation.Latitude, accommodation.Longitude, accommodation.Name, Brushes.IndianRed, packIcon);
                 }
             }
 
@@ -76,7 +80,9 @@ namespace Turisticka_Agencija.Windows.Shared
             {
                 foreach (Restaurant restaurant in _trip.Restaurants)
                 {
-                    AddPin(restaurant.Latitude, restaurant.Longitude, restaurant.Name, Brushes.Blue);
+                    var packIcon = new PackIcon();
+                    packIcon.Kind = PackIconKind.Restaurant;
+                    AddPin(restaurant.Latitude, restaurant.Longitude, restaurant.Name, Brushes.DarkCyan, packIcon);
                 }
             }
 
@@ -84,17 +90,20 @@ namespace Turisticka_Agencija.Windows.Shared
             {
                 foreach (Place place in _trip.Places)
                 {
-                    AddPin(place.Latitude, place.Longitude, place.Name, Brushes.Green);
+                    var packIcon = new PackIcon();
+                    packIcon.Kind = PackIconKind.Landscape;
+                    AddPin(place.Latitude, place.Longitude, place.Name, Brushes.DarkOrange, packIcon);
                 }
             }
         }
 
-        private void AddPin(double latitude, double longitude, string heading, SolidColorBrush color)
+        private void AddPin(double latitude, double longitude, string heading, SolidColorBrush color, PackIcon icon)
         {
             var location = new Location(latitude, longitude);
             var pin = new Pushpin();
             pin.Location = location;
             pin.ToolTip = heading;
+            pin.Content = icon;
             pin.Background = color;
             Map.Children.Add(pin);
             Map.Center = location;
@@ -137,5 +146,57 @@ namespace Turisticka_Agencija.Windows.Shared
             }
         }
 
+        private void ReserveButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!UserService.IsLoggedIn)
+            {
+                MessageBox.Show("Prvo se morate ulogovati ili registrovati (ako još nemate nalog).");
+                return;
+            }
+
+            if (ReserveButtonText.Text.StartsWith("Otk"))
+            {
+                UserService.LoggedUser.CancelReservation(_trip);
+                MessageBox.Show("Uspešno ste otkazali ovu rezervaciju.");
+                RefreshButtons();
+                return;
+            }
+            UserService.LoggedUser.ReserveTrip(_trip);
+            MessageBox.Show("Uspešno ste rezervisali ovo putovanje!");
+            RefreshButtons();
+        }
+
+        private void BuyButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!UserService.IsLoggedIn)
+            {
+                MessageBox.Show("Prvo se morate ulogovati ili registrovati (ako još nemate nalog).");
+                return;
+            }
+
+            UserService.LoggedUser.BuyTrip(_trip);
+            MessageBox.Show("Uspešno ste kupili ovo putovanje!");
+            RefreshButtons();
+        }
+
+        private void RefreshButtons()
+        {
+            if (!UserService.IsLoggedIn)
+                return;
+
+            ReserveButtonText.Text = "Rezerviši";
+
+            if (UserService.LoggedUser.ReservedTrip(_trip))
+            {
+                ReserveButtonText.Text = "Otkaži rezervaciju";
+            }
+
+            if (UserService.LoggedUser.BoughtTrip(_trip))
+            {
+                ReserveButton.Visibility = Visibility.Collapsed;
+                BuyButton.Visibility = Visibility.Collapsed;
+                AlreadyBoughtTextBox.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

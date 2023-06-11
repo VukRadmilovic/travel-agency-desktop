@@ -217,22 +217,34 @@
         </Grid>
 
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" x:Name="ViewButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="400"
-                IsEnabled="False">
+                IsEnabled="False" Visibility="Collapsed">
             <TextBlock Text="Pregled detalja"
                        FontWeight="Thin"
                        Foreground="White"></TextBlock>
         </Button>
 
-        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ReserveButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="300">
-            <TextBlock Text="Rezerviši"
+        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ReserveButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="300" Click="ReserveButton_Click">
+            <TextBlock Text="Rezerviši" x:Name="ReserveButtonText"
                        FontWeight="Thin"
                        Foreground="White"></TextBlock>
         </Button>
 
-        <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" x:Name="BuyButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="300">
-            <TextBlock Text="Kupi"
+        <Button Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" x:Name="BuyButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="300" Click="BuyButton_Click">
+            <TextBlock Text="Kupi" x:Name="BuyButtonText"
                        FontWeight="Thin"
                        Foreground="White"></TextBlock>
         </Button>
+
+        <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" x:Name="AlreadyBoughtTextBox" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 Background="Peru"
+                 HorizontalContentAlignment="Center"
+                 Text="Kupili ste ovo putovanje."
+                 Padding="10" 
+                 Margin="5"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap"
+                 Visibility="Collapsed"/>
     </Grid>
 </Window>

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Turisticka_Agencija.Services;
+using Turisticka_Agencija.Utils;
 
 namespace Turisticka_Agencija.Models
 {
@@ -28,6 +31,32 @@ namespace Turisticka_Agencija.Models
         }
 
         public User() { }
+
+        public void CancelReservation(Trip trip)
+        {
+            //TODO: IMPLEMENT
+        }
+
+        public void ReserveTrip(Trip trip)
+        {
+            //TODO: IMPLEMENT
+        }
+
+
+        public void BuyTrip(Trip trip)
+        {
+            //TODO: IMPLEMENT
+        }
+
+        public bool ReservedTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool BoughtTrip(Trip trip)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public enum UserType

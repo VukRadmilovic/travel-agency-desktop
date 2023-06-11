@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using Turisticka_Agencija.Utils;
 using Turisticka_Agencija.Models;
 using System.Linq;
@@ -13,7 +15,8 @@ namespace Turisticka_Agencija.Services
         public static (bool Success, User User) TryLogin(LoginDTO loginCredentials)
         {
             using var dbContext = new Context();
-            var user = dbContext.Users.FirstOrDefault(user =>
+            var user = dbContext.Users
+                .FirstOrDefault(user =>
                 user.Email == loginCredentials.Email.Trim() && user.Password == loginCredentials.Password.Trim());
 
             if (user == null)
@@ -43,6 +46,5 @@ namespace Turisticka_Agencija.Services
             IsLoggedIn = true;
             return (true, userInformation);
         }
-
     }
 }

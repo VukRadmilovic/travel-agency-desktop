@@ -30,6 +30,7 @@ public partial class CRUDRestaurantWindow : Window
     private Restaurant _selectedRestaurant;
     private readonly CustomDataContext _dataContext = new();
     public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
+    public static RoutedCommand NavigateToCrudTrip { get; } = new();
     public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
     public static RoutedCommand NavigateToCrudPlace { get; } = new();
     public static RoutedCommand LogoutCommand { get; } = new();
@@ -48,6 +49,7 @@ public partial class CRUDRestaurantWindow : Window
         VirtualizingPanel.SetVirtualizationMode(RestaurantsTable, VirtualizationMode.Recycling);
         DataContext = _dataContext;
 
+        NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
         NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
         NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
         ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
@@ -407,6 +409,13 @@ public partial class CRUDRestaurantWindow : Window
     {
         var placeWindow = new CRUDPlaceWindow();
         placeWindow.Show();
+        Close();
+    }
+
+    private void TripCRUD_Click(object sender, RoutedEventArgs e)
+    {
+        var tripWindow = new CRUDTripWindow();
+        tripWindow.Show();
         Close();
     }
 }

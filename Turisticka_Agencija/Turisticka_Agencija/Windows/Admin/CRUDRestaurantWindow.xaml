@@ -12,7 +12,7 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Restorani" Height="500" Width="650" AutomationProperties.Name="windows" MinWidth="600">
+        Title="Bata Travel - Restorani" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600">
     <Window.Resources>
         <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
         <DataTemplate x:Key="StateTemplate">
@@ -23,6 +23,7 @@
         <converters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
     </Window.Resources>
     <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudAccommodation}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.SearchCommand}" Executed="SearchShortcut"></CommandBinding>
@@ -77,8 +78,9 @@
 
                 <MenuItem Header="Putovanje"
                           InputGestureText="Alt+P"
+                          x:Name="TripCRUD"
                               Icon="{materialDesign:PackIcon Kind=BagSuitcase}"
-                              FontWeight="Thin" Padding="24,5,24,5"/>
+                              FontWeight="Thin" Padding="24,5,24,5" Click="TripCRUD_Click"/>
             </MenuItem>
 
             <MenuItem Header="Izveštaji"

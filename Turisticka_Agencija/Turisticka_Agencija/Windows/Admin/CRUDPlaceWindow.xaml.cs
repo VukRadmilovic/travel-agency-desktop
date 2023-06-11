@@ -34,6 +34,7 @@ public partial class CRUDPlaceWindow : Window
         VirtualizingPanel.SetVirtualizationMode(PlacesTable, VirtualizationMode.Recycling);
         DataContext = _dataContext;
 
+        NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
         NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
         NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
         ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
@@ -44,6 +45,7 @@ public partial class CRUDPlaceWindow : Window
         LogoutCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
     }
 
+    public static RoutedCommand NavigateToCrudTrip { get; } = new();
     public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
     public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
     public static RoutedCommand LogoutCommand { get; } = new();
@@ -338,5 +340,12 @@ public partial class CRUDPlaceWindow : Window
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+    }
+
+    private void TripCRUD_OnClick(object sender, RoutedEventArgs e)
+    {
+        var window = new CRUDTripWindow();
+        window.Show();
+        Close();
     }
 }

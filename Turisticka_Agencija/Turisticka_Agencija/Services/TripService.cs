@@ -14,7 +14,12 @@ namespace Turisticka_Agencija.Services
         public static List<Trip> GetAll()
         {
             using var dbContext = new Context();
-            return dbContext.Trips.ToList();
+            List<Trip> trips = dbContext.Trips
+                .Include(t => t.Accommodations)
+                .Include(t => t.Restaurants)
+                .Include(t => t.Places)
+                .ToList();
+            return trips;
         }
 
         public static bool Save(Trip trip)

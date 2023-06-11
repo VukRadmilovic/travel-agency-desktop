@@ -21,9 +21,9 @@ namespace Turisticka_Agencija.Models
         public DateTime End { get; set; }
         public double Price { get; set; }
         public string Description { get; set; }
-        public List<Place> Places { get; set; } // attractions
-        public List<Accommodation> Accommodations { get; set; }
-        public List<Restaurant> Restaurants { get; set; }
+        public virtual ICollection<Place> Places { get; set; } // attractions
+        public virtual ICollection<Accommodation> Accommodations { get; set; }
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
         public int QuantitySold { get; set; }
 
         public Trip()
@@ -31,7 +31,22 @@ namespace Turisticka_Agencija.Models
 
         }
 
-        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, List<Place> places, List<Accommodation> accommodations, List<Restaurant> restaurants, int quantitySold)
+        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, int quantitySold)
+        {
+            Id = id;
+            Name = name;
+            StartLatitude = startLatitude;
+            StartLongitude = startLongitude;
+            EndLatitude = endLatitude;
+            EndLongitude = endLongitude;
+            Start = start;
+            End = end;
+            Price = price;
+            Description = description;
+            QuantitySold = quantitySold;
+        }
+
+        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, ICollection<Place> places, ICollection<Accommodation> accommodations, ICollection<Restaurant> restaurants, int quantitySold)
         {
             Id = id;
             Name = name;

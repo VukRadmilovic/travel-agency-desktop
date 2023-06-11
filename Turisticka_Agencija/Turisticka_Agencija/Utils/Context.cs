@@ -11,5 +11,12 @@ namespace Turisticka_Agencija.Utils
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Accommodation> Accommodations { get; set; }
         public DbSet<Trip> Trips { get; set; }
+        public DbSet<TripBoughtOrReservedByUser> TripsBoughtOrReservedByUser { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TripBoughtOrReservedByUser>()
+                .HasKey(t => new { t.TripId, t.UserId, t.Action });
+        }
     }
 }

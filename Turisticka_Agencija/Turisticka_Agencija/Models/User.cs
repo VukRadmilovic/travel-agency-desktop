@@ -34,28 +34,31 @@ namespace Turisticka_Agencija.Models
 
         public void CancelReservation(Trip trip)
         {
-            //TODO: IMPLEMENT
+            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Reserved);
+            TripBoughtOrReservedByUserService.Delete(t);
         }
 
         public void ReserveTrip(Trip trip)
         {
-            //TODO: IMPLEMENT
+            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Reserved);
+            TripBoughtOrReservedByUserService.Save(t);
         }
 
 
         public void BuyTrip(Trip trip)
         {
-            //TODO: IMPLEMENT
+            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Bought);
+            TripBoughtOrReservedByUserService.Save(t);
         }
 
         public bool ReservedTrip(Trip trip)
         {
-            throw new NotImplementedException();
+            return TripBoughtOrReservedByUserService.IsReserved(trip, this);
         }
 
         public bool BoughtTrip(Trip trip)
         {
-            throw new NotImplementedException();
+            return TripBoughtOrReservedByUserService.IsBought(trip, this);
         }
     }
 

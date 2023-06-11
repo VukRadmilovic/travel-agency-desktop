@@ -24,14 +24,13 @@ namespace Turisticka_Agencija.Models
         public virtual ICollection<Place> Places { get; set; } // attractions
         public virtual ICollection<Accommodation> Accommodations { get; set; }
         public virtual ICollection<Restaurant> Restaurants { get; set; }
-        public int QuantitySold { get; set; }
 
         public Trip()
         {
 
         }
 
-        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, int quantitySold)
+        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description)
         {
             Id = id;
             Name = name;
@@ -43,10 +42,9 @@ namespace Turisticka_Agencija.Models
             End = end;
             Price = price;
             Description = description;
-            QuantitySold = quantitySold;
         }
 
-        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, ICollection<Place> places, ICollection<Accommodation> accommodations, ICollection<Restaurant> restaurants, int quantitySold)
+        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, ICollection<Place> places, ICollection<Accommodation> accommodations, ICollection<Restaurant> restaurants)
         {
             Id = id;
             Name = name;
@@ -61,7 +59,6 @@ namespace Turisticka_Agencija.Models
             Places = places;
             Accommodations = accommodations;
             Restaurants = restaurants;
-            QuantitySold = quantitySold;
         }
 
         public override string ToString()

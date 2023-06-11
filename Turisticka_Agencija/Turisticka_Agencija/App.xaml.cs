@@ -21,7 +21,7 @@ namespace Turisticka_Agencija
         {
             base.OnStartup(e);
 
-            GenerateRandomTrips();
+            //GenerateRandomTrips();
         }
 
         private static void GenerateRandomTrips()
@@ -88,8 +88,7 @@ namespace Turisticka_Agencija
                 description: description,
                 places: places,
                 accommodations: accommodations,
-                restaurants: restaurants,
-                quantitySold: 0
+                restaurants: restaurants
             );
         }
 

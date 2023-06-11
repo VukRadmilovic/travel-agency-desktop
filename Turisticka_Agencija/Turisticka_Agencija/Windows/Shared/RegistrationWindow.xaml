@@ -11,7 +11,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Icon="/logo.png" MinWidth="350" IsTabStop="False" KeyDown="Window_KeyDown">
+        Icon="/logo.png" MinWidth="350" IsTabStop="False" KeyDown="Window_KeyDown" Closing="Window_Closing">
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"></RowDefinition>

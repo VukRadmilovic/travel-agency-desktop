@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Input;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
@@ -88,6 +89,15 @@ public partial class Registration : Window
         if (e.Key == Key.Enter)
         {
             Register();
+        }
+    }
+
+    private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        if (!UserService.IsLoggedIn)
+        {
+            var window = new ViewAllTripsWindow();
+            window.Show();
         }
     }
 }

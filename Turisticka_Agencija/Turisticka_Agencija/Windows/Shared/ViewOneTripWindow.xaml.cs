@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -174,6 +175,13 @@ namespace Turisticka_Agencija.Windows.Shared
                 return;
             }
 
+            var decision = MessageBox.Show("Da li ste sigurni da želite da kupite ovo putovanje?", 
+                "Potvrda kupovine", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (decision == MessageBoxResult.No)
+            {
+                return;
+            }
             UserService.LoggedUser.BuyTrip(_trip);
             MessageBox.Show("Uspešno ste kupili ovo putovanje!");
             RefreshButtons();

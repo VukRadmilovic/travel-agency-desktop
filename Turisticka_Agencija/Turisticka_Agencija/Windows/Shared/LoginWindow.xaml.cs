@@ -66,4 +66,13 @@ public partial class LoginWindow : Window
             Login();
         }
     }
+
+    private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        if (!UserService.IsLoggedIn)
+        {
+            var window = new ViewAllTripsWindow();
+            window.Show();
+        }
+    }
 }

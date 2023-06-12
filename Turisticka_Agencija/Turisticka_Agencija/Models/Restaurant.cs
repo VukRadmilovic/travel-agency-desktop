@@ -34,5 +34,10 @@ namespace Turisticka_Agencija.Models
         }
 
         public Restaurant() {}
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Restaurant && ((Restaurant)obj).Name == Name;
+        }
     }
 }

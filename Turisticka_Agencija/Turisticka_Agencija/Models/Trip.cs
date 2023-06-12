@@ -26,7 +26,7 @@ namespace Turisticka_Agencija.Models
 
         }
 
-        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description)
+        public Trip(int id, string name, DateTime start, DateTime end, double price, string description)
         {
             Id = id;
             Name = name;
@@ -36,7 +36,7 @@ namespace Turisticka_Agencija.Models
             Description = description;
         }
 
-        public Trip(int id, string name, double startLatitude, double startLongitude, double endLatitude, double endLongitude, DateTime start, DateTime end, double price, string description, ICollection<Place> places, ICollection<Accommodation> accommodations, ICollection<Restaurant> restaurants)
+        public Trip(int id, string name, DateTime start, DateTime end, double price, string description, ICollection<Place> places, ICollection<Accommodation> accommodations, ICollection<Restaurant> restaurants)
         {
             Id = id;
             Name = name;

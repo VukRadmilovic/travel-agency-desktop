@@ -31,6 +31,12 @@ namespace Turisticka_Agencija.Services
             return dbContext.TripsBoughtOrReservedByUser.Any(t => t.TripId == trip.Id && t.UserId == user.Id && t.Action == Action.Bought);
         }
 
+        public static int NumberOfSold(Trip trip)
+        {
+            using var dbContext = new Context();
+            return dbContext.TripsBoughtOrReservedByUser.Count(t => t.TripId == trip.Id && t.Action == Action.Bought);
+        }
+
         public static bool Save(TripBoughtOrReservedByUser t)
         {
             using var dbContext = new Context();

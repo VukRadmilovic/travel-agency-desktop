@@ -49,10 +49,6 @@ namespace Turisticka_Agencija
             Random random = new Random();
 
             string tripName = "Trip " + random.Next(1000, 9999);
-            double startLatitude = GenerateRandomLatitude();
-            double startLongitude = GenerateRandomLongitude();
-            double endLatitude = GenerateRandomLatitude();
-            double endLongitude = GenerateRandomLongitude();
             List<Place> places = GenerateRandomPlaces();
             double price = random.Next(500, 5000);
             Accommodation? accommodation = GenerateRandomAccommodation();
@@ -78,10 +74,6 @@ namespace Turisticka_Agencija
             return new Trip(
                 id: 0,
                 name: tripName,
-                startLatitude: startLatitude,
-                startLongitude: startLongitude,
-                endLatitude: endLatitude,
-                endLongitude: endLongitude,
                 start: start,
                 end: end,
                 price: price,

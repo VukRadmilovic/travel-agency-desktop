@@ -17,6 +17,38 @@ namespace Turisticka_Agencija.Utils
         {
             modelBuilder.Entity<TripBoughtOrReservedByUser>()
                 .HasKey(t => new { t.TripId, t.UserId, t.Action });
+
+            modelBuilder.Entity<Trip>()
+                .HasMany(t => t.Places)
+                .WithMany()
+                .Map(tpt =>
+                {
+                    tpt.ToTable("TripPlace");
+                    tpt.MapLeftKey("TripId");
+                    tpt.MapRightKey("PlaceId");
+                });
+
+            modelBuilder.Entity<Trip>()
+                .HasMany(t => t.Accommodations)
+                .WithMany()
+                .Map(tat =>
+                {
+                    tat.ToTable("TripAccommodation");
+                    tat.MapLeftKey("TripId");
+                    tat.MapRightKey("AccommodationId");
+                });
+
+            modelBuilder.Entity<Trip>()
+                .HasMany(t => t.Restaurants)
+                .WithMany()
+                .Map(trt =>
+                {
+                    trt.ToTable("TripRestaurant");
+                    trt.MapLeftKey("TripId");
+                    trt.MapRightKey("RestaurantId");
+                });
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

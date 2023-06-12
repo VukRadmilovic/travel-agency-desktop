@@ -205,14 +205,16 @@ namespace Turisticka_Agencija.Windows.Admin
             if (!CreateButton.IsEnabled) return;
             if (_dataContext.SelectedAddress.FormattedAddress == "" || _dataContext.SelectedAddress == null)
             {
-                MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (SuccessSnackbar.MessageQueue is { } messageQueue2)
+                    Task.Factory.StartNew(() => messageQueue2.Enqueue("Nepostojeća adresa."));
                 return;
             }
 
             List<double> coordinates = MapService.GeocodeAddress();
             if (coordinates == null)
             {
-                MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (SuccessSnackbar.MessageQueue is { } messageQueue3)
+                    Task.Factory.StartNew(() => messageQueue3.Enqueue("Nepostojeća adresa."));
                 return;
             }
 
@@ -244,7 +246,8 @@ namespace Turisticka_Agencija.Windows.Admin
                 return;
             }
 
-            MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (SuccessSnackbar.MessageQueue is { } messageQueue)
+                Task.Factory.StartNew(() => messageQueue.Enqueue("Nepostojeća adresa."));
         }
 
         private void AccommodationsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -281,7 +284,8 @@ namespace Turisticka_Agencija.Windows.Admin
             _dataContext.CurrentAccommodation = _selectedAccommodation;
             if (_dataContext.SelectedAddress == null || _dataContext.SelectedAddress.FormattedAddress == "")
             {
-                MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (SuccessSnackbar.MessageQueue is { } messageQueue2)
+                    Task.Factory.StartNew(() => messageQueue2.Enqueue("Nepostojeća adresa."));
                 return;
             }
 
@@ -290,7 +294,8 @@ namespace Turisticka_Agencija.Windows.Admin
                 List<double> coordinates = MapService.GeocodeAddress();
                 if (coordinates == null)
                 {
-                    MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (SuccessSnackbar.MessageQueue is { } messageQueue3)
+                        Task.Factory.StartNew(() => messageQueue3.Enqueue("Nepostojeća adresa."));
                     return;
                 }
 

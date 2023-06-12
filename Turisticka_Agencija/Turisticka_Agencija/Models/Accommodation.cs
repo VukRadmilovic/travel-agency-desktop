@@ -26,5 +26,10 @@ namespace Turisticka_Agencija.Models
         }
 
         public Accommodation() { }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Accommodation && ((Accommodation)obj).Name == Name;
+        }
     }
 }

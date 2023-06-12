@@ -44,7 +44,7 @@ public partial class LoginWindow : Window
                 await Task.Factory.StartNew(() => messageQueue.Enqueue("Uspešna prijava."));
                 if (user.Type == UserType.Agent)
                 {
-                    CRUDPlaceWindow window = new();
+                    CRUDTripWindow window = new();
                     window.Show();
                     Close();
                 }

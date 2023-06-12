@@ -34,20 +34,20 @@ namespace Turisticka_Agencija.Models
 
         public void CancelReservation(Trip trip)
         {
-            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Reserved);
+            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Reserved, DateTime.Now);
             TripBoughtOrReservedByUserService.Delete(t);
         }
 
         public void ReserveTrip(Trip trip)
         {
-            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Reserved);
+            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Reserved, DateTime.Now);
             TripBoughtOrReservedByUserService.Save(t);
         }
 
 
         public void BuyTrip(Trip trip)
         {
-            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Bought);
+            TripBoughtOrReservedByUser t = new(trip.Id, Id, Action.Bought, DateTime.Now);
             TripBoughtOrReservedByUserService.Save(t);
         }
 

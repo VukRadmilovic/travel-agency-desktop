@@ -87,6 +87,7 @@
             </MenuItem>
 
             <MenuItem Header="Izveštaji"
+                      Click="Report"
                       FontSize="{Binding ActualHeight, Converter={StaticResource FontSizeConverter}, ElementName=menuItem, Mode=OneWay}"
                       Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
                 <MenuItem Header="Prodata putovanja po mesecu"

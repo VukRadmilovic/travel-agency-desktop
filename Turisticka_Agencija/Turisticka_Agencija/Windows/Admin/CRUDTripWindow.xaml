@@ -21,6 +21,8 @@
         <converters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
     </Window.Resources>
     <Window.CommandBindings>
+
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToCrudAccommodation}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_Click"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"></CommandBinding>

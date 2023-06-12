@@ -21,17 +21,17 @@ namespace Turisticka_Agencija.Help
     /// </summary>
     public partial class HelpViewer : Window
     {
-        public HelpViewer(string key, LoginWindow originator)
+        public HelpViewer(string key)
         {
             InitializeComponent();
             string curDir = Directory.GetCurrentDirectory();
-            string path = String.Format("{0}/Help/{1}.htm", curDir, key);
+            string path = String.Format("C:\\Fakultet\\V\\HCI\\hci-tim14-agencija\\Turisticka_Agencija\\Turisticka_Agencija\\Help\\{0}.htm", key);
             if (!File.Exists(path))
             {
                 key = "error";
             }
-            Uri u = new Uri(String.Format("file:///{0}/HelpHtml/{1}.htm", curDir, key));
-
+            Uri u = new Uri(String.Format("file:///C:\\Fakultet\\V\\HCI\\hci-tim14-agencija\\Turisticka_Agencija\\Turisticka_Agencija\\Help\\{0}.htm", key));
+            wbHelp.Navigate(u);
         }
 
         private void BrowseBack_CanExecute(object sender, CanExecuteRoutedEventArgs e)

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Utils;
@@ -22,14 +23,31 @@ namespace Turisticka_Agencija.Windows.Admin
     /// <summary>
     /// Interaction logic for ReportWindow.xaml
     /// </summary>
+    /// 
     public partial class ReportWindow : Window
     {
+
+        private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpReport");
+        }
         private ObservableCollection<Report> _report = new();
+        public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
+        public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
+        public static RoutedCommand NavigateToCrudPlace { get; } = new();
+        public static RoutedCommand NavigateToCrudTrip { get; } = new();
+        public static RoutedCommand LogoutCommand { get; } = new();
+        public static RoutedCommand HelpCommand { get; } = new();
         public ReportWindow()
         {
             InitializeComponent();
             YearFilterField.SelectedIndex = 0;
             MonthFilterField.SelectedIndex = 0;
+            NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
+            NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
+            NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
+            LogoutCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
+            HelpCommand.InputGestures.Add(new KeyGesture(Key.F1));
         }
 
         private void TableFilterField_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -86,6 +104,10 @@ namespace Turisticka_Agencija.Windows.Admin
             var reportWindow = new ReportWindow();
             reportWindow.Show();
             Close();
+        }
+        private void HelpClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

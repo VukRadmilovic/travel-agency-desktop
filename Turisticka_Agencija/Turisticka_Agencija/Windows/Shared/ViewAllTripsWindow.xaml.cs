@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 
@@ -24,6 +25,10 @@ namespace Turisticka_Agencija.Windows.Shared
     {
 
         private readonly ObservableCollection<Trip> _trips = new();
+        private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpAllTrips");
+        }
 
         public ViewAllTripsWindow()
         {

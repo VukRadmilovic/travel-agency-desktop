@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Input;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Admin;
@@ -15,6 +16,10 @@ namespace Turisticka_Agencija;
 /// </summary>
 public partial class Registration : Window
 {
+    private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+    {
+        HelpProvider.ShowHelp("HelpRegister");
+    }
     public Registration()
     {
         InitializeComponent();

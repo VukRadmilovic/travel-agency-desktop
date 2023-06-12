@@ -13,6 +13,9 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png" ScrollViewer.HorizontalScrollBarVisibility="Auto" MinWidth="350" IsTabStop="False" KeyDown="Window_KeyDown" Closing="Window_Closing">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
+    </Window.CommandBindings>
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"></RowDefinition>

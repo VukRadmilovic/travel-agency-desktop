@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Utils;
@@ -24,6 +25,10 @@ namespace Turisticka_Agencija.Windows.Shared
     public partial class ViewBoughtTripsWindow : Window
     {
         private readonly ObservableCollection<TripUser> _trips = new();
+        private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpBought");
+        }
         public ViewBoughtTripsWindow()
         {
             InitializeComponent();

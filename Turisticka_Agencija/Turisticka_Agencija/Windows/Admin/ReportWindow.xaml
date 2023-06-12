@@ -14,6 +14,24 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
         Title="Bata Travel - Smeštaji" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600">
+    <Window.Resources>
+        <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
+        <DataTemplate x:Key="StateTemplate">
+            <Grid>
+                <TextBlock Text="{Binding Path=FormattedAddress}" />
+            </Grid>
+        </DataTemplate>
+        <converters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
+    </Window.Resources>
+    <Window.CommandBindings>
+
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.HelpCommand}" Executed="HelpClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.LogoutCommand}" Executed="Logout"></CommandBinding>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"></RowDefinition>

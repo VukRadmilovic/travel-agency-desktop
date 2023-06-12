@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Microsoft.Maps.MapControl.WPF;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Shared;
@@ -20,6 +21,10 @@ namespace Turisticka_Agencija.Windows.Admin;
 /// </summary>
 public partial class CRUDPlaceWindow : Window
 {
+    private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+    {
+        HelpProvider.ShowHelp("HelpCRUDPlace");
+    }
     private readonly CustomDataContext _dataContext = new();
     private readonly ObservableCollection<Place> _places = new();
     private ObservableCollection<Place> _searchedPlaces = new();

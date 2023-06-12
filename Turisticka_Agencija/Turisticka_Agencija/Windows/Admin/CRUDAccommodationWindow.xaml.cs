@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Shared;
@@ -22,6 +23,10 @@ namespace Turisticka_Agencija.Windows.Admin
     /// </summary>
     public partial class CRUDAccommodationWindow : Window
     {
+        private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpCRUDAc");
+        }
         private readonly ObservableCollection<Accommodation> _accommodations = new();
         private ObservableCollection<Accommodation> _searchedAccommodations = new();
         private Accommodation _selectedAccommodation;

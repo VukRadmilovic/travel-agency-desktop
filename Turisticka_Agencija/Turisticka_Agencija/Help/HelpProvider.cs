@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Turisticka_Agencija.Windows.Shared;
 
 namespace Turisticka_Agencija.Help
 {
@@ -26,7 +27,7 @@ namespace Turisticka_Agencija.Help
             //NOOP
         }
 
-        public static void ShowHelp(string key, MainWindow originator)
+        public static void ShowHelp(string key, LoginWindow originator)
         {
             HelpViewer hh = new HelpViewer(key, originator);
             hh.Show();

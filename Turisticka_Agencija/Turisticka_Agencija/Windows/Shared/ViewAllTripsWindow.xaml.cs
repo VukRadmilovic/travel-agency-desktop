@@ -78,7 +78,7 @@ namespace Turisticka_Agencija.Windows.Shared
                 Menu.Items.Add(logoutMenuItem);
                 var tripMenuItem = new MenuItem
                 {
-                    Header = "Kopljena Putovanja",
+                    Header = "Kupljena Putovanja",
                     Name = "tripMenuItem",
                 };
                 tripMenuItem.Click += tripMenuItem_Click;

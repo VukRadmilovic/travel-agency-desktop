@@ -17,6 +17,7 @@ namespace Turisticka_Agencija.Models
         public int UserId { get; set; }
         [Key, Column(Order = 2)]
         public Action Action { get; set; }
+        [Key, Column(Order = 3)]
         public DateTime BuyDate {  get; set; }
 
         public TripBoughtOrReservedByUser(int tripId, int userId, Action action, DateTime buyDate)

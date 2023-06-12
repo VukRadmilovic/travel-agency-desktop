@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
+using Turisticka_Agencija.Utils;
 using Turisticka_Agencija.Windows.Shared;
 
 namespace Turisticka_Agencija.Windows.Admin
@@ -23,28 +24,35 @@ namespace Turisticka_Agencija.Windows.Admin
     /// </summary>
     public partial class ReportWindow : Window
     {
-        private readonly ObservableCollection<Trip> _trips = new();
+        private ObservableCollection<Report> _report = new();
         public ReportWindow()
         {
             InitializeComponent();
-            foreach (var trip in TripService.GetAll())
-            {
-                _trips.Add(trip);
-            }
-
-            TripsTable.ItemsSource = _trips;
-            VirtualizingPanel.SetIsVirtualizing(TripsTable, true);
-            VirtualizingPanel.SetVirtualizationMode(TripsTable, VirtualizationMode.Recycling);
+            YearFilterField.SelectedIndex = 0;
+            MonthFilterField.SelectedIndex = 0;
         }
 
         private void TableFilterField_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            /*var selectedAccommodation = (Accommodation)AccommodationsTable.SelectedItem;
-            if (selectedAccommodation == null) return;
-            FillFields(selectedAccommodation);
-            DeleteButton.IsEnabled = true;
-            NameField.Focus();
-            NameField.CaretIndex = selectedAccommodation.Name.Length;*/
+            _report.Clear();
+            foreach (var trip in TripService.GetAll())
+            {
+                int year = 1;
+                int month = 1;
+                if (YearFilterField.SelectedItem != null)
+                {
+                    year = int.Parse(((ComboBoxItem)YearFilterField.SelectedItem).Content.ToString());
+                }
+                if (MonthFilterField.SelectedItem != null)
+                {
+                    month = int.Parse(((ComboBoxItem)MonthFilterField.SelectedItem).Content.ToString());
+                }
+                _report.Add(new Report(trip, TripBoughtOrReservedByUserService.CountBought(trip, new DateTime(year, month, 1))));
+            }
+
+            TripsTable.ItemsSource = _report;
+            VirtualizingPanel.SetIsVirtualizing(TripsTable, true);
+            VirtualizingPanel.SetVirtualizationMode(TripsTable, VirtualizationMode.Recycling);
         }
 
         private void Logout(object sender, RoutedEventArgs e)

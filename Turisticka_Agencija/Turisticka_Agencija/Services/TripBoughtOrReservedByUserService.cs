@@ -46,5 +46,12 @@ namespace Turisticka_Agencija.Services
             dbContext.SaveChanges();
             return true;
         }
+
+        public static int CountBought(Trip trip, DateTime dateTime)
+        {
+            using var dbContext = new Context();
+            int count = dbContext.TripsBoughtOrReservedByUser.Count(o => o.TripId == trip.Id && o.BuyDate.Month == dateTime.Month && o.BuyDate.Year == dateTime.Year && o.Action == Action.Bought);
+            return count;
+        }
     }
 }

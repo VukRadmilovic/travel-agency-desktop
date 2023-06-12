@@ -97,33 +97,48 @@
                 <StackPanel Orientation="Horizontal" Margin="5,15,0,15">
                     <TextBlock  Margin="60,0,0,0"
                                 FontSize="30" VerticalAlignment="Center">Broj zvezdica</TextBlock>
-                    <ComboBox x:Name="StartCountFilterField"
+                    <ComboBox x:Name="YearFilterField"
                              MinWidth="150"
                              Margin="40,0,0,0"
                              FontSize="30"
                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                             SelectionChanged="StartCountFilterField_OnSelectionChanged" IsTextSearchEnabled="False">
-                        <ComboBoxItem>...</ComboBoxItem>
-                        <ComboBoxItem>1</ComboBoxItem>
-                        <ComboBoxItem>2</ComboBoxItem>
-                        <ComboBoxItem>3</ComboBoxItem>
-                        <ComboBoxItem>4</ComboBoxItem>
-                        <ComboBoxItem>5</ComboBoxItem>
+                             SelectionChanged="TableFilterField_OnSelectionChanged" IsTextSearchEnabled="False">
+                        <ComboBoxItem>2023</ComboBoxItem>
+                        <ComboBoxItem>2022</ComboBoxItem>
+                        <ComboBoxItem>2021</ComboBoxItem>
+                        <ComboBoxItem>2020</ComboBoxItem>
+                        <ComboBoxItem>2019</ComboBoxItem>
+                        <ComboBoxItem>2018</ComboBoxItem>
+                        <ComboBoxItem>2017</ComboBoxItem>
+                        <ComboBoxItem>2016</ComboBoxItem>
+                        <ComboBoxItem>2015</ComboBoxItem>
+                        <ComboBoxItem>2014</ComboBoxItem>
+                        <ComboBoxItem>2013</ComboBoxItem>
+                        <ComboBoxItem>2012</ComboBoxItem>
+                        <ComboBoxItem>2011</ComboBoxItem>
+                        <ComboBoxItem>2010</ComboBoxItem>
+                        
                     </ComboBox>
                     <TextBlock  Margin="60,0,0,0"
                                 FontSize="30" VerticalAlignment="Center">Broj zvezdica</TextBlock>
-                    <ComboBox x:Name="StartCountFilterField1"
+                    <ComboBox x:Name="MonthFilterField"
                              MinWidth="150"
                              Margin="40,0,0,0"
                              FontSize="30"
                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                             SelectionChanged="StartCountFilterField_OnSelectionChanged" IsTextSearchEnabled="False">
-                        <ComboBoxItem>...</ComboBoxItem>
+                             SelectionChanged="TableFilterField_OnSelectionChanged" IsTextSearchEnabled="False">
                         <ComboBoxItem>1</ComboBoxItem>
                         <ComboBoxItem>2</ComboBoxItem>
                         <ComboBoxItem>3</ComboBoxItem>
                         <ComboBoxItem>4</ComboBoxItem>
                         <ComboBoxItem>5</ComboBoxItem>
+                        <ComboBoxItem>6</ComboBoxItem>
+                        <ComboBoxItem>7</ComboBoxItem>
+                        <ComboBoxItem>8</ComboBoxItem>
+                        <ComboBoxItem>9</ComboBoxItem>
+                        <ComboBoxItem>10</ComboBoxItem>
+                        <ComboBoxItem>11</ComboBoxItem>
+                        <ComboBoxItem>12</ComboBoxItem>
                     </ComboBox>
                 </StackPanel>
             </GroupBox>
@@ -155,19 +170,19 @@
                                     Binding="{Binding Name, Mode=OneWay}"
                                     IsReadOnly="True"/>
 
-                <DataGridTextColumn Header="Od"
-                                    CellStyle="{StaticResource CellStyle}"
-                                    Binding="{Binding Start, Mode=OneWay}"
-                                    IsReadOnly="True"/>
-
-                <DataGridTextColumn Header="Do"
-                                    CellStyle="{StaticResource CellStyle}"
-                                    Binding="{Binding End, Mode=OneWay}"
-                                    IsReadOnly="True"/>
-
                 <DataGridTextColumn Header="Cena"
                                     CellStyle="{StaticResource CellStyle}"
                                     Binding="{Binding Price, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Broj Kupljenih"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Count, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Ukupna Cena"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding FullPrice, Mode=OneWay}"
                                     IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>

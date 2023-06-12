@@ -56,6 +56,10 @@ namespace Turisticka_Agencija.Windows.Admin
             AvailablePlacesTable.ItemsSource = PlaceService.GetAll();
             AvailableRestaurantsTable.ItemsSource = RestaurantService.GetAll();
             AvailableAccommodationsTable.ItemsSource = AccommodationService.GetAll();
+
+            ThisTripPlacesTable.ItemsSource = _currentPlaces;
+            ThisTripRestaurantsTable.ItemsSource = _currentRestaurants;
+            ThisTripAccommodationsTable.ItemsSource = _currentAccommodations;
         }
 
         private void TripsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -213,7 +217,8 @@ namespace Turisticka_Agencija.Windows.Admin
 
             if (NameTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Morate uneti naziv putovanja.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue2)
+                    Task.Factory.StartNew(() => messageQueue2.Enqueue("Morate uneti naziv putovanja."));
                 return;
             }
 
@@ -241,20 +246,23 @@ namespace Turisticka_Agencija.Windows.Admin
 
             if (!fromParsed || !toParsed)
             {
-                MessageBox.Show("Morate uneti datume u formatu dan.mesec.godina (npr. 23.5.2022)");
+                if (FailureSnackbar.MessageQueue is { } messageQueue3)
+                    Task.Factory.StartNew(() => messageQueue3.Enqueue("Morate uneti datume u formatu dan.mesec.godina (npr. 23.5.2022)"));
                 return;
             }
 
             if (from > to)
             {
-                MessageBox.Show("Datum polaska je posle datuma dolaska. Molim Vas proverite datume ponovo.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue4)
+                    Task.Factory.StartNew(() => messageQueue4.Enqueue("Datum polaska je posle datuma dolaska. Molim Vas proverite datume ponovo."));
                 return;
             }
 
             bool priceParsed = double.TryParse(PriceTextBox.Text, out price);
             if (!priceParsed)
             {
-                MessageBox.Show("Morate uneti cenu kao decimalan broj.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue5)
+                    Task.Factory.StartNew(() => messageQueue5.Enqueue("Morate uneti cenu kao decimalan broj."));
                 return;
             }
 
@@ -263,7 +271,8 @@ namespace Turisticka_Agencija.Windows.Admin
             bool success = TripService.Save(trip);
             if (!success)
             {
-                MessageBox.Show("Došlo je do greške prilikom upisa podataka. Molim Vas pokušajte ponovo uskoro.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue6)
+                    Task.Factory.StartNew(() => messageQueue6.Enqueue("Došlo je do greške prilikom upisa podataka. Molim Vas pokušajte ponovo uskoro."));
                 return;
             }
 
@@ -285,13 +294,15 @@ namespace Turisticka_Agencija.Windows.Admin
 
             if (selectedTrip == null)
             {
-                MessageBox.Show("Morate odabrati koje putovanje želite da izmenite iz tabele.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue2)
+                    Task.Factory.StartNew(() => messageQueue2.Enqueue("Morate odabrati koje putovanje želite da izmenite iz tabele."));
                 return;
             }
 
             if (NameTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Morate uneti naziv putovanja.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue3)
+                    Task.Factory.StartNew(() => messageQueue3.Enqueue("Morate uneti naziv putovanja."));
                 return;
             }
 
@@ -319,20 +330,23 @@ namespace Turisticka_Agencija.Windows.Admin
 
             if (!fromParsed || !toParsed)
             {
-                MessageBox.Show("Morate uneti datume u formatu dan.mesec.godina (npr. 23.5.2022)");
+                if (FailureSnackbar.MessageQueue is { } messageQueue4)
+                    Task.Factory.StartNew(() => messageQueue4.Enqueue("Morate uneti datume u formatu dan.mesec.godina (npr. 23.5.2022)"));
                 return;
             }
 
             if (from > to)
             {
-                MessageBox.Show("Datum polaska je posle datuma dolaska. Molim Vas proverite datume ponovo.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue5)
+                    Task.Factory.StartNew(() => messageQueue5.Enqueue("Datum polaska je posle datuma dolaska. Molim Vas proverite datume ponovo."));
                 return;
             }
 
             bool priceParsed = double.TryParse(PriceTextBox.Text, out price);
             if (!priceParsed)
             {
-                MessageBox.Show("Morate uneti cenu kao decimalan broj.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue6)
+                    Task.Factory.StartNew(() => messageQueue6.Enqueue("Morate uneti cenu kao decimalan broj."));
                 return;
             }
 
@@ -348,7 +362,8 @@ namespace Turisticka_Agencija.Windows.Admin
             bool success = TripService.Update(selectedTrip);
             if (!success)
             {
-                MessageBox.Show("Došlo je do greške prilikom izmene podataka. Molim Vas pokušajte ponovo uskoro.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue8)
+                    Task.Factory.StartNew(() => messageQueue8.Enqueue("Došlo je do greške prilikom izmene podataka. Molim Vas pokušajte ponovo uskoro."));
                 return;
             }
 
@@ -369,7 +384,8 @@ namespace Turisticka_Agencija.Windows.Admin
 
             if (selectedTrip == null)
             {
-                MessageBox.Show("Morate odabrati koje putovanje želite da obrišete iz tabele.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue2)
+                    Task.Factory.StartNew(() => messageQueue2.Enqueue("Morate odabrati koje putovanje želite da obrišete iz tabele."));
                 return;
             }
 
@@ -384,7 +400,8 @@ namespace Turisticka_Agencija.Windows.Admin
             bool success = TripService.Delete(selectedTrip);
             if (!success)
             {
-                MessageBox.Show("Došlo je do greške prilikom brisanja podataka. Molim Vas pokušajte ponovo uskoro.");
+                if (FailureSnackbar.MessageQueue is { } messageQueue3)
+                    Task.Factory.StartNew(() => messageQueue3.Enqueue("Došlo je do greške prilikom brisanja podataka. Molim Vas pokušajte ponovo uskoro."));
                 return;
             }
 
@@ -404,7 +421,8 @@ namespace Turisticka_Agencija.Windows.Admin
                 {
                     if (_currentPlaces.Contains(droppedPlace))
                     {
-                        MessageBox.Show("Ovu atrakciju ste već uneli.");
+                        if (FailureSnackbar.MessageQueue is { } messageQueue)
+                            Task.Factory.StartNew(() => messageQueue.Enqueue("Ovu atrakciju ste već uneli"));
                         return;
                     }
                     _currentPlaces.Add(droppedPlace);
@@ -456,7 +474,8 @@ namespace Turisticka_Agencija.Windows.Admin
                 {
                     if (_currentRestaurants.Contains(droppedRestaurant))
                     {
-                        MessageBox.Show("Ovaj restoran ste već uneli.");
+                        if (FailureSnackbar.MessageQueue is { } messageQueue)
+                            Task.Factory.StartNew(() => messageQueue.Enqueue("Ovaj restoran ste već uneli."));
                         return;
                     }
                     _currentRestaurants.Add(droppedRestaurant);
@@ -501,7 +520,8 @@ namespace Turisticka_Agencija.Windows.Admin
                 {
                     if (_currentAccommodations.Contains(droppedAccommodation))
                     {
-                        MessageBox.Show("Ovaj smeštaj ste već uneli.");
+                        if (FailureSnackbar.MessageQueue is { } messageQueue)
+                            Task.Factory.StartNew(() => messageQueue.Enqueue("Ovaj smeštaj ste već uneli."));
                         return;
                     }
                     _currentAccommodations.Add(droppedAccommodation);

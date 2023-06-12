@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Admin;
@@ -74,5 +75,9 @@ public partial class LoginWindow : Window
             var window = new ViewAllTripsWindow();
             window.Show();
         }
+    }
+    private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+    {
+        HelpProvider.ShowHelp("HelpLogin");
     }
 }

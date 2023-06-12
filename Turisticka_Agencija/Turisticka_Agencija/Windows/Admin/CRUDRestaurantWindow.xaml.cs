@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using BingMapsRESTToolkit;
 using Microsoft.Maps.MapControl.WPF;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 using Turisticka_Agencija.Windows.Admin;
@@ -25,6 +26,10 @@ namespace Turisticka_Agencija;
 /// </summary>
 public partial class CRUDRestaurantWindow : Window
 {
+    private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+    {
+        HelpProvider.ShowHelp("HelpCRUDR");
+    }
     private readonly ObservableCollection<Restaurant> _restaurants = new();
     private ObservableCollection<Restaurant> _searchedRestaurants = new();
     private Restaurant _selectedRestaurant;
@@ -416,6 +421,12 @@ public partial class CRUDRestaurantWindow : Window
     {
         var tripWindow = new CRUDTripWindow();
         tripWindow.Show();
+        Close();
+    }
+    private void Report(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
         Close();
     }
 }

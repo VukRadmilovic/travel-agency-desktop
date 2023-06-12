@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Maps.MapControl.WPF;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
 
@@ -26,7 +27,10 @@ namespace Turisticka_Agencija.Windows.Shared
     public partial class ViewOneTripWindow : Window
     {
         private Trip _trip;
-
+        private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpOne");
+        }
         public ViewOneTripWindow()
         {
             InitializeComponent();

@@ -1,0 +1,43 @@
+﻿<!--IZMENI HREF-OVE KADA BUDES NAPRAVIO STRANICE!-->
+<!--LOGIN I REGISTRACIJA SU ISTE ZA KORISNIKA I ADMINA-->
+<!--IZMENI CLASS ACTIVE U ODNOSU NA TO, NA KOJOJ SI STRANICI-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online pomoć</title>
+    <link rel="icon" type="image/x-icon" href="../logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="alice-blue width-100">
+    <div class="navbar-fixed">
+        <ul id="dropdown-data" class="dropdown-content">
+            <li><a href="#!">Pregled svih</a></li>
+            <li><a href="#!">Pregled rezervisanih i kupljenih</a></li>
+        </ul>
+        <ul id="dropdown-user" class="dropdown-content">
+            <li class="active"><a href="#!">Prijava</a></li>
+            <li><a href="#!">Registracija</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper dark-salmon">
+                <a href="#" class="brand-logo">Bata Travel - Online pomoć</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="active"><a class="dropdown-trigger" href="#!" data-target="dropdown-user">Korisnik<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown-data">Putovanja<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <br>
+    <div class="padding-xs">
+        <div class="row border">
+            Stranica za CRUD
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="behaviour.js"></script>
+</body>
+</html>

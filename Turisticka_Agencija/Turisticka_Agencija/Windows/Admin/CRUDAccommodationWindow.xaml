@@ -24,6 +24,7 @@
         <converters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
     </Window.Resources>
     <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"/>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"/>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"/>
@@ -87,6 +88,7 @@
             </MenuItem>
 
             <MenuItem Header="Izveštaji"
+                      Click="Report"
                       FontSize="{Binding ActualHeight, Converter={StaticResource FontSizeConverter}, ElementName=menuItem, Mode=OneWay}"
                       Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
                 <MenuItem Header="Prodata putovanja po mesecu"

@@ -1,0 +1,112 @@
+<!--IZMENI HREF-OVE KADA BUDES NAPRAVIO STRANICE!-->
+<!--LOGIN I REGISTRACIJA SU ISTE ZA KORISNIKA I ADMINA-->
+<!--IZMENI CLASS ACTIVE U ODNOSU NA TO, NA KOJOJ SI STRANICI-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Online pomoć</title>
+        <link rel="icon" type="image/x-icon" href="../logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="alice-blue width-100">
+        <div class="navbar-fixed">
+            <ul id="dropdown-data" class="dropdown-content">
+                <li><a href="#!">Smeštaj</a></li>
+                <li><a href="#!">Restoran</a></li>
+                <li><a href="#!">Turistička atrakcija</a></li>
+                <li><a href="#!">Putovanja</a></li>
+            </ul>
+            <ul id="dropdown-user" class="dropdown-content">
+                <li class="active"><a href="#!">Prijava</a></li>
+                <li><a href="#!">Registracija</a></li>
+            </ul>
+            <nav>
+                <div class="nav-wrapper dark-salmon">
+                <a href="#" class="brand-logo">Bata Travel - Online pomoć</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="active"><a class="dropdown-trigger" href="#!" data-target="dropdown-user">Korisnik<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown-data">Podaci<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a href="#!">Izveštaji</a></li>
+                </ul>
+                </div>
+            </nav>
+        </div>
+          <br>
+          <div class="padding-xs">
+            <div class="row border">
+                Ovde ide kratak opis sta forma predstavlja/ cemu sluzi. Tu mozes ugurati i sliku ekrana, ako hoces da se referenciras
+                na nju u daljem tekstu, da ne moras svaki put screenshotovati deo ekrana na koji se odnosis. Korisnik moze da se pomera
+                na sledecu stavku prozora sa tab tasterom, a shift tab na prethodni. Checkboxove ako ima, mogu se aktivirati na space key.
+            </div>
+            <div class="row">
+                <h3>Pregled podataka o ...</h3>
+                <div class="col s6 border">
+                    Ovde ce ici slika ekrana. Slikaj deo koji se odnosi na pregled podataka o cemu god, to je skoro uvek tabela. 
+                    Opisi ukratko sta se moze videti tu od podataka.
+                </div>
+                <div class="col s6 border">
+                    Ovde ce ici opis.  Obavezno navedi da klikom na zaglavlje kolone se podaci sortiraju 
+                    po abecednom redosledu.
+                </div>
+                <br>
+                <br>
+                <br>
+                <h5>Filteri pretrage</h5>
+                <div class="col s6 border">
+                    Ovde ce ici slika ekrana. Cut originalne slike gde se vide filteri pretrage.
+                </div>
+                <div class="col s6 border">
+                    Ovde ce ici opis. Objasni kako se odma cim se unose filter podaci, tabela automatski menja. Objasni da se filteri 
+                    kombinuju, tj ako ih ima vise, sve sto je uneto ce se ocrtavati na tabeli. Ctrl+F je shortcut za pretragu.
+                </div>
+            </div>
+            <div class="row">
+                <h3>Unos novog ...</h3>
+                <div class="col s6 border">
+                    Ovde ce ici slika ekrana. Cutovana slika od one glavne sa pocetka, deo forme unosa.
+                </div>
+                <div class="col s6 border">
+                    Ovde ce ici opis. Shortcut za unos je ctrl + S. Dugme Dodaj postaje aktivno samo ako su svi podaci uneti korektno.
+                    Objasni da se polja validiraju tokom unosa, tj, svaki put kad se izmeni sadrzaj forme. Adresa field je autocomplete,
+                    objasni da mora da se odabere neki od ponuda, inace se racuna kao nevalidno. Kada unese, prikazuje se poruka o uspesnom
+                    unosu.
+                </div>
+            </div>
+            <div class="row">
+                <h3>Modifikacija postojeceg ...</h3>
+                <div class="col s6 border">
+                    Ovde ce ici slika ekrana. Klikom na neku od stavki u tabeli se popunjavaju polja.
+                </div>
+                <div class="col s6 border">
+                    Ovde ce ici opis. Ctrl + M je shortcut za modifikaciju. Klik na stavku iz tabele automatski puni polja. Kada izmeni, prikazuje 
+                    se poruka o uspesnoj modifikaciji.
+                </div>
+            </div>
+        
+            <div class="row">
+                <h3>Brisanje ...</h3>
+                <div class="col s6 border">
+                    Ovde ce ici slika ekrana. Dijalog sa pitanje da li je siguran da oce da obrise.
+                </div>
+                <div class="col s6 border">
+                    Ovde ce ici opis. Shortcut za brisanje je ctrl + D. Ako klikne na Da, pokazace mu se poruka o uspesnom brisanju, i izbacice
+                    tu stavku iz tabele.
+                </div>
+            </div>
+
+            <div class="row">
+                <h3>Navigacija</h3>
+                <div class="col s12 border">
+                    Ovde ce ici opis. Objasni meni koji prelazi preko stranica. Objasni gde vodi, i navedi shortcutove za svaki (
+                        pisu pored naziva stranice.
+                    )
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="behaviour.js"></script>
+    </body>
+</html>

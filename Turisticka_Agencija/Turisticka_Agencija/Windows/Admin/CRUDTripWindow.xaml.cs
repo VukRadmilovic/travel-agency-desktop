@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using Turisticka_Agencija.Help;
 using Turisticka_Agencija.Windows.Shared;
 
 namespace Turisticka_Agencija.Windows.Admin
@@ -17,6 +18,10 @@ namespace Turisticka_Agencija.Windows.Admin
     /// </summary>
     public partial class CRUDTripWindow : Window
     {
+        private void HelpClick(object sender, ExecutedRoutedEventArgs e)
+        {
+            HelpProvider.ShowHelp("HelpCRUDTrip");
+        }
         public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
         public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
         public static RoutedCommand NavigateToCrudPlace { get; } = new();
@@ -112,6 +117,12 @@ namespace Turisticka_Agencija.Windows.Admin
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Deleted");
+        }
+        private void Report(object sender, RoutedEventArgs e)
+        {
+            var reportWindow = new ReportWindow();
+            reportWindow.Show();
+            Close();
         }
     }
 }

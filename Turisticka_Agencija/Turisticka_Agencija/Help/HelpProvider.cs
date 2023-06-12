@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Turisticka_Agencija.Windows.Admin;
 using Turisticka_Agencija.Windows.Shared;
 
 namespace Turisticka_Agencija.Help
@@ -29,7 +30,53 @@ namespace Turisticka_Agencija.Help
 
         public static void ShowHelp(string key, LoginWindow originator)
         {
-            HelpViewer hh = new HelpViewer(key, originator);
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key)
+        {
+            HelpViewer hh = new HelpViewer(key);
+            hh.Show();
+        }
+
+        public static void ShowHelp(string key, ViewAllTripsWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, ViewOneTripWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, ViewBoughtTripsWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, ReportWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, CRUDTripWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, CRUDRestaurantWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, CRUDPlaceWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
+            hh.Show();
+        }
+        public static void ShowHelp(string key, CRUDAccommodationWindow originator)
+        {
+            HelpViewer hh = new HelpViewer("HelpLogin");
             hh.Show();
         }
     }

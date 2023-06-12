@@ -1,0 +1,144 @@
+﻿<Window x:Class="Turisticka_Agencija.Windows.Shared.ViewBoughtTripsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Turisticka_Agencija.Windows.Shared"
+        mc:Ignorable="d"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontWeight="Thin"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Icon="/logo.png"
+        xmlns:admin="clr-namespace:Turisticka_Agencija.Windows.Admin"
+        Title="Bata Travel - Kupljena Putovanja" Height="600" Width="750" MinWidth="600">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="4"
+              HorizontalContentAlignment="Stretch"
+              x:Name="Menu"
+              Background="AliceBlue"
+              VerticalContentAlignment="Stretch" Padding="0,1,0,0"/>
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" x:Name="ViewButton" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="200" Click="ViewButton_Click"
+                IsEnabled="False">
+            <TextBlock Text="Pregled detalja"
+                       FontWeight="Thin"
+                       Foreground="White"></TextBlock>
+        </Button>
+
+        <DataGrid x:Name="TripsTable"
+                  AutoGenerateColumns="False"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AlternationCount="2"
+                  AlternatingRowBackground="#33E9967A"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Padding="10,10,0,0" FontSize="14" SelectionChanged="TripsTable_SelectionChanged" MouseDoubleClick="TripsTable_MouseDoubleClick">
+            <DataGrid.Resources>
+                <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
+                       BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Setter Property="KeyboardNavigation.IsTabStop"
+                            Value="False" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Trip.Name, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Od"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Trip.Start, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Do"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Trip.End, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Cena"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Trip.Price, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridCheckBoxColumn Binding="{Binding IsBought, Mode=OneWay}"
+                                Header="Rezervisano"
+                                CellStyle="{StaticResource CellStyle}"
+                                IsReadOnly="True"
+                                CanUserResize="False">
+                    <DataGridCheckBoxColumn.ElementStyle>
+                        <Style TargetType="{x:Type CheckBox}"
+                           BasedOn="{StaticResource MaterialDesignCheckBox}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsBought}" Value="True">
+                                    <Setter Property="Background" Value="Green"/>
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Column.IsReadOnly, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridCell}}}" Value="True">
+                                    <Setter Property="IsHitTestVisible" Value="False" />
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.ElementStyle>
+                    <DataGridCheckBoxColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}"
+                           BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.HeaderStyle>
+                </DataGridCheckBoxColumn>
+                
+                <DataGridCheckBoxColumn Binding="{Binding IsReserved, Mode=OneWay}"
+                                Header="Rezervisano"
+                                CellStyle="{StaticResource CellStyle}"
+                                IsReadOnly="True"
+                                CanUserResize="False">
+                    <DataGridCheckBoxColumn.ElementStyle>
+                        <Style TargetType="{x:Type CheckBox}"
+                           BasedOn="{StaticResource MaterialDesignCheckBox}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsReserved}" Value="True">
+                                    <Setter Property="Background" Value="Green"/>
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Column.IsReadOnly, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type DataGridCell}}}" Value="True">
+                                    <Setter Property="IsHitTestVisible" Value="False" />
+                                    <Setter Property="IsTabStop" Value="False"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.ElementStyle>
+                    <DataGridCheckBoxColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}"
+                           BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                            <Setter Property="IsTabStop" Value="False"></Setter>
+                        </Style>
+                    </DataGridCheckBoxColumn.HeaderStyle>
+                </DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

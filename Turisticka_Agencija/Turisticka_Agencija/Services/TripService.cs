@@ -42,6 +42,34 @@ namespace Turisticka_Agencija.Services
                 }
             }
 
+            // Check if restaurants already exist in the database
+            for (int i = trip.Restaurants.Count - 1; i >= 0; i--)
+            {
+                var restaurant = trip.Restaurants.ElementAt(i);
+                var existingRestaurant = dbContext.Restaurants.FirstOrDefault(p => p.Name == restaurant.Name);
+                if (existingRestaurant != null)
+                {
+                    // Restaurant already exists, so replace it with the existing one
+                    dbContext.Entry(restaurant).State = EntityState.Detached;
+                    trip.Restaurants.Remove(restaurant);
+                    trip.Restaurants.Add(existingRestaurant);
+                }
+            }
+
+            // Check if accommodations already exist in the database
+            for (int i = trip.Accommodations.Count - 1; i >= 0; i--)
+            {
+                var accommodation = trip.Accommodations.ElementAt(i);
+                var existingAccommodation = dbContext.Accommodations.FirstOrDefault(p => p.Name == accommodation.Name);
+                if (existingAccommodation != null)
+                {
+                    // Accommodation already exists, so replace it with the existing one
+                    dbContext.Entry(accommodation).State = EntityState.Detached;
+                    trip.Accommodations.Remove(accommodation);
+                    trip.Accommodations.Add(existingAccommodation);
+                }
+            }
+
             dbContext.Trips.Add(trip);
             dbContext.SaveChanges();
             return true;

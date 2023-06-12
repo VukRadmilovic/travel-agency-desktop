@@ -209,11 +209,6 @@
                                             Binding="{Binding Name, Mode=OneWay}"
                                             IsReadOnly="True"/>
 
-                        <DataGridTextColumn Header="Adresa"
-                                            CellStyle="{StaticResource CellStyle}"
-                                            Binding="{Binding Address, Mode=OneWay}"
-                                            IsReadOnly="True"/>
-
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -238,7 +233,8 @@
                           AlternationCount="2"
                           AlternatingRowBackground="#33E9967A"
                           SelectionMode="Single"
-                          Padding="10,10,0,0" FontSize="14">
+                          AllowDrop="True"
+                          Padding="10,10,0,0" FontSize="14" Drop="ThisTripRestaurantsTable_Drop" MouseDoubleClick="ThisTripRestaurantsTable_MouseDoubleClick">
                     <DataGrid.Resources>
                         <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                                BasedOn="{StaticResource MaterialDesignDataGridCell}">
@@ -250,11 +246,6 @@
                         <DataGridTextColumn Header="Naziv"
                                             CellStyle="{StaticResource CellStyle}"
                                             Binding="{Binding Name, Mode=OneWay}"
-                                            IsReadOnly="True"/>
-
-                        <DataGridTextColumn Header="Adresa"
-                                            CellStyle="{StaticResource CellStyle}"
-                                            Binding="{Binding Address, Mode=OneWay}"
                                             IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -280,7 +271,8 @@
                           AlternationCount="2"
                           AlternatingRowBackground="#33E9967A"
                           SelectionMode="Single"
-                          Padding="10,10,0,0" FontSize="14">
+                          AllowDrop="True"
+                          Padding="10,10,0,0" FontSize="14" Drop="ThisTripAccommodationsTable_Drop" MouseDoubleClick="ThisTripAccommodationsTable_MouseDoubleClick">
                     <DataGrid.Resources>
                         <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                                BasedOn="{StaticResource MaterialDesignDataGridCell}">
@@ -292,11 +284,6 @@
                         <DataGridTextColumn Header="Naziv"
                                             CellStyle="{StaticResource CellStyle}"
                                             Binding="{Binding Name, Mode=OneWay}"
-                                            IsReadOnly="True"/>
-
-                        <DataGridTextColumn Header="Adresa"
-                                            CellStyle="{StaticResource CellStyle}"
-                                            Binding="{Binding Address, Mode=OneWay}"
                                             IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -439,7 +426,7 @@
                                   AlternationCount="2"
                                   AlternatingRowBackground="#33E9967A"
                                   SelectionMode="Single"
-                                  Padding="5 0 5 0" FontSize="14">
+                                  Padding="5 0 5 0" FontSize="14" MouseMove="AvailableRestaurantsTable_MouseMove">
                             <DataGrid.Resources>
                                 <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                                        BasedOn="{StaticResource MaterialDesignDataGridCell}">
@@ -470,7 +457,7 @@
                                   AlternationCount="2"
                                   AlternatingRowBackground="#33E9967A"
                                   SelectionMode="Single"
-                                  Padding="5 0 5 0" FontSize="14">
+                                  Padding="5 0 5 0" FontSize="14" MouseMove="AvailableAccommodationsTable_MouseMove">
                             <DataGrid.Resources>
                                 <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                                        BasedOn="{StaticResource MaterialDesignDataGridCell}">

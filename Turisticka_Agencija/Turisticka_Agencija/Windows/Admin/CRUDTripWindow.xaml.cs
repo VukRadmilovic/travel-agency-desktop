@@ -438,5 +438,95 @@ namespace Turisticka_Agencija.Windows.Admin
                 _currentPlaces.Remove(selectedPlace);
             }
         }
+
+        private void AddRestaurantPin(Restaurant droppedRestaurant)
+        {
+            var packIcon = new PackIcon();
+            packIcon.Kind = PackIconKind.Restaurant;
+            AddPin(droppedRestaurant.Latitude, droppedRestaurant.Longitude, droppedRestaurant.Name, Brushes.DarkCyan, packIcon);
+        }
+
+        private void ThisTripRestaurantsTable_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Restaurant)))
+            {
+                var droppedRestaurant = e.Data.GetData(typeof(Restaurant)) as Restaurant;
+
+                if (droppedRestaurant != null)
+                {
+                    if (_currentRestaurants.Contains(droppedRestaurant))
+                    {
+                        MessageBox.Show("Ovaj restoran ste već uneli.");
+                        return;
+                    }
+                    _currentRestaurants.Add(droppedRestaurant);
+                    AddRestaurantPin(droppedRestaurant);
+                }
+            }
+        }
+
+        private void AvailableRestaurantsTable_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                var selectedRestaurant = (Restaurant)AvailableRestaurantsTable.SelectedItem;
+                if (selectedRestaurant != null)
+                    DragDrop.DoDragDrop((DependencyObject)sender, selectedRestaurant, DragDropEffects.Copy);
+            }
+        }
+
+        private void ThisTripRestaurantsTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedRestaurant = (Restaurant)ThisTripRestaurantsTable.SelectedItem;
+            if (selectedRestaurant != null)
+            {
+                _currentRestaurants.Remove(selectedRestaurant);
+            }
+        }
+
+        private void AddAccommodationPin(Accommodation accommodation)
+        {
+            var packIcon = new PackIcon();
+            packIcon.Kind = PackIconKind.Home;
+            AddPin(accommodation.Latitude, accommodation.Longitude, accommodation.Name, Brushes.IndianRed, packIcon);
+        }
+
+        private void ThisTripAccommodationsTable_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Accommodation)))
+            {
+                var droppedAccommodation = e.Data.GetData(typeof(Accommodation)) as Accommodation;
+
+                if (droppedAccommodation != null)
+                {
+                    if (_currentAccommodations.Contains(droppedAccommodation))
+                    {
+                        MessageBox.Show("Ovaj smeštaj ste već uneli.");
+                        return;
+                    }
+                    _currentAccommodations.Add(droppedAccommodation);
+                    AddAccommodationPin(droppedAccommodation);
+                }
+            }
+        }
+
+        private void AvailableAccommodationsTable_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                var selectedAccommodation = (Accommodation)AvailableAccommodationsTable.SelectedItem;
+                if (selectedAccommodation != null)
+                    DragDrop.DoDragDrop((DependencyObject)sender, selectedAccommodation, DragDropEffects.Copy);
+            }
+        }
+
+        private void ThisTripAccommodationsTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedAccommodation = (Accommodation)ThisTripAccommodationsTable.SelectedItem;
+            if (selectedAccommodation != null)
+            {
+                _currentAccommodations.Remove(selectedAccommodation);
+            }
+        }
     }
 }

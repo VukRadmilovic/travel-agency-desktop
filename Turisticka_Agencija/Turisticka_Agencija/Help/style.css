@@ -1,0 +1,23 @@
+.dark-salmon {
+    background-color: #e9967a;
+}
+
+.nav-wrapper {
+    padding-left: 20px;
+}
+
+.alice-blue {
+    background-color: #f0f8ff;
+}
+
+.border {
+    border: 1px solid black;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.padding-xs {
+    padding: 0 30px;
+}

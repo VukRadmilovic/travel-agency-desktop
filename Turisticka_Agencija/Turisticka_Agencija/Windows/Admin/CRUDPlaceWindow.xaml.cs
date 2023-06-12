@@ -174,14 +174,16 @@ public partial class CRUDPlaceWindow : Window
         if (!CreateButton.IsEnabled) return;
         if (_dataContext.SelectedAddress.FormattedAddress == "" || _dataContext.SelectedAddress == null)
         {
-            MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (SuccessSnackbar.MessageQueue is { } messageQueue2)
+                Task.Factory.StartNew(() => messageQueue2.Enqueue("Nepostojeća adresa."));
             return;
         }
 
         var coordinates = MapService.GeocodeAddress();
         if (coordinates == null)
         {
-            MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (SuccessSnackbar.MessageQueue is { } messageQueue3)
+                Task.Factory.StartNew(() => messageQueue3.Enqueue("Nepostojeća adresa."));
             return;
         }
 
@@ -211,7 +213,8 @@ public partial class CRUDPlaceWindow : Window
             return;
         }
 
-        MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+        if (SuccessSnackbar.MessageQueue is { } messageQueue)
+            Task.Factory.StartNew(() => messageQueue.Enqueue("Nepostojeća adresa."));
     }
 
     private void PlacesTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -248,7 +251,8 @@ public partial class CRUDPlaceWindow : Window
         _dataContext.CurrentPlace = _selectedPlace;
         if (_dataContext.SelectedAddress == null || _dataContext.SelectedAddress.FormattedAddress == "")
         {
-            MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (SuccessSnackbar.MessageQueue is { } messageQueue2)
+                Task.Factory.StartNew(() => messageQueue2.Enqueue("Nepostojeća adresa."));
             return;
         }
 
@@ -257,7 +261,8 @@ public partial class CRUDPlaceWindow : Window
             var coordinates = MapService.GeocodeAddress();
             if (coordinates == null)
             {
-                MessageBox.Show("Nepostojeća adresa.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (SuccessSnackbar.MessageQueue is { } messageQueue3)
+                    Task.Factory.StartNew(() => messageQueue3.Enqueue("Nepostojeća adresa."));
                 return;
             }
 

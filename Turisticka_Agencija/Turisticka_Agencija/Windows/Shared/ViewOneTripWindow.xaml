@@ -246,5 +246,16 @@
                  IsReadOnly="True"
                  TextWrapping="Wrap"
                  Visibility="Collapsed"/>
+        <materialDesign:Snackbar x:Name="SuccessSnackbar"
+                                 IsActive="False"
+                                 VerticalAlignment="Top"
+                                 Grid.Row="0"
+                                 Grid.RowSpan="2"
+                                 Grid.Column="2"
+                                 Grid.ColumnSpan="2"
+                                 HorizontalAlignment="Right"
+                                 MessageQueue="{materialDesign:MessageQueue}" MinWidth="300" Panel.ZIndex="1"
+                                 Margin="0,20,10,0" FontSize="16">
+        </materialDesign:Snackbar>
     </Grid>
 </Window>

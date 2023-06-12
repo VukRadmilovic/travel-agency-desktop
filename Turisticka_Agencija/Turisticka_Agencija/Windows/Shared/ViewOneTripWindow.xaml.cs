@@ -151,19 +151,22 @@ namespace Turisticka_Agencija.Windows.Shared
         {
             if (!UserService.IsLoggedIn)
             {
-                MessageBox.Show("Prvo se morate ulogovati ili registrovati (ako još nemate nalog).");
+                if (SuccessSnackbar.MessageQueue is { } messageQueue)
+                    Task.Factory.StartNew(() => messageQueue.Enqueue("Prvo se morate ulogovati ili registrovati (ako još nemate nalog)."));
                 return;
             }
 
             if (ReserveButtonText.Text.StartsWith("Otk"))
             {
                 UserService.LoggedUser.CancelReservation(_trip);
-                MessageBox.Show("Uspešno ste otkazali ovu rezervaciju.");
+                if (SuccessSnackbar.MessageQueue is { } messageQueue2)
+                    Task.Factory.StartNew(() => messageQueue2.Enqueue("Uspešno ste otkazali ovu rezervaciju."));
                 RefreshButtons();
                 return;
             }
             UserService.LoggedUser.ReserveTrip(_trip);
-            MessageBox.Show("Uspešno ste rezervisali ovo putovanje!");
+            if (SuccessSnackbar.MessageQueue is { } messageQueue3)
+                Task.Factory.StartNew(() => messageQueue3.Enqueue("Uspešno ste rezervisali ovo putovanje!"));
             RefreshButtons();
         }
 
@@ -171,7 +174,8 @@ namespace Turisticka_Agencija.Windows.Shared
         {
             if (!UserService.IsLoggedIn)
             {
-                MessageBox.Show("Prvo se morate ulogovati ili registrovati (ako još nemate nalog).");
+                if (SuccessSnackbar.MessageQueue is { } messageQueue)
+                    Task.Factory.StartNew(() => messageQueue.Enqueue("Prvo se morate ulogovati ili registrovati (ako još nemate nalog)."));
                 return;
             }
 
@@ -183,7 +187,8 @@ namespace Turisticka_Agencija.Windows.Shared
                 return;
             }
             UserService.LoggedUser.BuyTrip(_trip);
-            MessageBox.Show("Uspešno ste kupili ovo putovanje!");
+            if (SuccessSnackbar.MessageQueue is { } messageQueue2)
+                Task.Factory.StartNew(() => messageQueue2.Enqueue("Uspešno ste kupili ovo putovanje!"));
             RefreshButtons();
         }
 

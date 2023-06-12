@@ -29,6 +29,7 @@ namespace Turisticka_Agencija.Windows.Admin
         public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
         public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
         public static RoutedCommand NavigateToCrudPlace { get; } = new();
+        public static RoutedCommand NavigateToCrudTrip { get; } = new();
         public static RoutedCommand LogoutCommand { get; } = new();
         public static RoutedCommand ClearFieldsCommand { get; } = new();
         public static RoutedCommand SaveCommand { get; } = new();
@@ -47,6 +48,7 @@ namespace Turisticka_Agencija.Windows.Admin
 
             NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
             NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
+            NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
             ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
             ModifyCommand.InputGestures.Add(new KeyGesture(Key.M, ModifierKeys.Control));
@@ -372,6 +374,13 @@ namespace Turisticka_Agencija.Windows.Admin
         {
             var placeWindow = new CRUDPlaceWindow();
             placeWindow.Show();
+            Close();
+        }
+
+        private void TripCRUD_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new CRUDTripWindow();
+            window.Show();
             Close();
         }
     }

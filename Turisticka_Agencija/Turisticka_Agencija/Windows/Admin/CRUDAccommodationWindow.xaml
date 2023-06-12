@@ -13,7 +13,7 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Smeštaji" Height="500" Width="650" AutomationProperties.Name="windows" MinWidth="600">
+        Title="Bata Travel - Smeštaji" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600">
     <Window.Resources>
         <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
         <DataTemplate x:Key="StateTemplate">
@@ -25,6 +25,7 @@
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"/>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"/>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.ClearFieldsCommand}" Executed="ClearFieldsButton_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDAccommodationWindow.SaveCommand}" Executed="CreateButton_OnClick"></CommandBinding>
@@ -58,6 +59,7 @@
                 <MenuItem Header="_Restoran"
                           x:Name="RestaurantCRUD"
                           Click="RestaurantCRUD_OnClick"
+                          FontWeight="Thin"
                           InputGestureText="Alt+R"
                           Icon="{materialDesign:PackIcon Kind=Restaurant}"
                          Padding="24,5,24,5"/>
@@ -68,7 +70,7 @@
                           IsChecked="True"
                           x:Name="AccomodationCRUD"
                           Icon="{materialDesign:PackIcon Kind=Home}"
-                              FontWeight="Thin" Padding="24,5,24,5"/>
+                              Padding="24,5,24,5"/>
 
                 <MenuItem Header="Atrakcija"
                           InputGestureText="Alt+A"
@@ -78,9 +80,10 @@
                               FontWeight="Thin" Padding="24,5,24,5"/>
 
                 <MenuItem Header="Putovanje"
+                          x:Name="TripCRUD"
                           InputGestureText="Alt+P"
                               Icon="{materialDesign:PackIcon Kind=BagSuitcase}"
-                              FontWeight="Thin" Padding="24,5,24,5"/>
+                              FontWeight="Thin" Padding="24,5,24,5" Click="TripCRUD_Click"/>
             </MenuItem>
 
             <MenuItem Header="Izveštaji"

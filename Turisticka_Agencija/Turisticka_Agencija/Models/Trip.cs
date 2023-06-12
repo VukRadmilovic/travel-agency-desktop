@@ -13,10 +13,6 @@ namespace Turisticka_Agencija.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
-        public double StartLatitude { get; set; }
-        public double StartLongitude { get; set; }
-        public double EndLatitude { get; set; }
-        public double EndLongitude { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public double Price { get; set; }
@@ -34,10 +30,6 @@ namespace Turisticka_Agencija.Models
         {
             Id = id;
             Name = name;
-            StartLatitude = startLatitude;
-            StartLongitude = startLongitude;
-            EndLatitude = endLatitude;
-            EndLongitude = endLongitude;
             Start = start;
             End = end;
             Price = price;
@@ -48,10 +40,6 @@ namespace Turisticka_Agencija.Models
         {
             Id = id;
             Name = name;
-            StartLatitude = startLatitude;
-            StartLongitude = startLongitude;
-            EndLatitude = endLatitude;
-            EndLongitude = endLongitude;
             Start = start;
             End = end;
             Price = price;

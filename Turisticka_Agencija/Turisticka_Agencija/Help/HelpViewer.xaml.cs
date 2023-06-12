@@ -30,7 +30,7 @@ namespace Turisticka_Agencija.Help
             {
                 key = "error";
             }
-            Uri u = new Uri(String.Format("file:///{0}/Help/{1}.htm", curDir, key));
+            Uri u = new Uri(String.Format("file:///{0}/HelpHtml/{1}.htm", curDir, key));
 
         }
 

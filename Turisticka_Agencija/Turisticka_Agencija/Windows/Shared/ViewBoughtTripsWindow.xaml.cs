@@ -14,24 +14,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Turisticka_Agencija.Models;
 using Turisticka_Agencija.Services;
+using Turisticka_Agencija.Utils;
 
 namespace Turisticka_Agencija.Windows.Shared
 {
     /// <summary>
-    /// Interaction logic for ViewAllTripsWindow.xaml
+    /// Interaction logic for ViewBoughtTripsWindow.xaml
     /// </summary>
-    public partial class ViewAllTripsWindow : Window
+    public partial class ViewBoughtTripsWindow : Window
     {
-
-        private readonly ObservableCollection<Trip> _trips = new();
-
-        public ViewAllTripsWindow()
+        private readonly ObservableCollection<TripUser> _trips = new();
+        public ViewBoughtTripsWindow()
         {
             InitializeComponent();
-
             foreach (var trip in TripService.GetAll())
             {
-                _trips.Add(trip);
+                bool isBought = false;
+                bool isReserved = false;
+                if(TripBoughtOrReservedByUserService.IsBought(trip, UserService.LoggedUser))
+                {
+                    isBought = true;
+                }
+                if (TripBoughtOrReservedByUserService.IsReserved(trip, UserService.LoggedUser))
+                {
+                    isReserved = true;
+                }
+                if (isBought || isReserved)
+                {
+                    _trips.Add(new TripUser(trip, isBought, isReserved));
+                }
             }
 
             TripsTable.ItemsSource = _trips;
@@ -39,7 +50,6 @@ namespace Turisticka_Agencija.Windows.Shared
             VirtualizingPanel.SetVirtualizationMode(TripsTable, VirtualizationMode.Recycling);
             BuildMenuItems();
         }
-
         private void BuildMenuItems()
         {
             Menu.Items.Clear();
@@ -73,7 +83,7 @@ namespace Turisticka_Agencija.Windows.Shared
                 Menu.Items.Add(logoutMenuItem);
                 var tripMenuItem = new MenuItem
                 {
-                    Header = "Kopljena Putovanja",
+                    Header = "Sva Putovanja",
                     Name = "tripMenuItem",
                 };
                 tripMenuItem.Click += tripMenuItem_Click;
@@ -95,17 +105,10 @@ namespace Turisticka_Agencija.Windows.Shared
             window.Show();
             Close();
         }
-        
+
         private void registerMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Registration window = new();
-            window.Show();
-            Close();
-        }
-
-        private void tripMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            ViewBoughtTripsWindow window = new();
             window.Show();
             Close();
         }
@@ -120,6 +123,13 @@ namespace Turisticka_Agencija.Windows.Shared
             Close();
         }
 
+        private void tripMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ViewAllTripsWindow window = new();
+            window.Show();
+            Close();
+        }
+
         private void helpMenuItem_Click(object sender, RoutedEventArgs e)
         {
 
@@ -127,7 +137,7 @@ namespace Turisticka_Agencija.Windows.Shared
 
         private void ViewButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewOneTripWindow window = new((Trip)TripsTable.SelectedItem);
+            ViewOneTripWindow window = new(((TripUser)TripsTable.SelectedItem).Trip);
             Hide();
             window.ShowDialog();
             Show();
@@ -135,7 +145,7 @@ namespace Turisticka_Agencija.Windows.Shared
 
         private void TripsTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedTrip = (Trip) TripsTable.SelectedItem;
+            var selectedTrip = ((TripUser)TripsTable.SelectedItem).Trip;
             if (selectedTrip == null)
             {
                 ViewButton.IsEnabled = false;

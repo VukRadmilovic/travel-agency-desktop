@@ -393,5 +393,50 @@ namespace Turisticka_Agencija.Windows.Admin
             if (SuccessSnackbar.MessageQueue is { } messageQueue)
                 Task.Factory.StartNew(() => messageQueue.Enqueue("Putovanje uspešno obrisano."));
         }
+
+        private void ThisTripPlacesTable_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Place)))
+            {
+                var droppedPlace = e.Data.GetData(typeof(Place)) as Place;
+
+                if (droppedPlace != null)
+                {
+                    if (_currentPlaces.Contains(droppedPlace))
+                    {
+                        MessageBox.Show("Ovu atrakciju ste već uneli.");
+                        return;
+                    }
+                    _currentPlaces.Add(droppedPlace);
+                    AddPlacePin(droppedPlace);
+                }
+            }
+        }
+
+        private void AddPlacePin(Place droppedPlace)
+        {
+            var packIcon = new PackIcon();
+            packIcon.Kind = PackIconKind.Landscape;
+            AddPin(droppedPlace.Latitude, droppedPlace.Longitude, droppedPlace.Name, Brushes.DarkOrange, packIcon);
+        }
+
+        private void AvailablePlacesTable_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                var selectedPlace = (Place)AvailablePlacesTable.SelectedItem;
+                if (selectedPlace != null)
+                    DragDrop.DoDragDrop((DependencyObject)sender, selectedPlace, DragDropEffects.Copy);
+            }
+        }
+
+        private void ThisTripPlacesTable_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var selectedPlace = (Place)ThisTripPlacesTable.SelectedItem;
+            if (selectedPlace != null)
+            {
+                _currentPlaces.Remove(selectedPlace);
+            }
+        }
     }
 }

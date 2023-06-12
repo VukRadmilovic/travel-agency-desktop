@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,7 @@ namespace Turisticka_Agencija.Models
     //samo treba izlistati turisticke atrakcije
     public class Place
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        [Key]
         public string Name { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
@@ -31,5 +31,10 @@ namespace Turisticka_Agencija.Models
         }
 
         public Place() {}
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Place && ((Place)obj).Name == Name;
+        }
     }
 }

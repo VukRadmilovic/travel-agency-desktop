@@ -194,7 +194,8 @@
                           AlternatingRowBackground="#33E9967A"
                           SelectionMode="Single"
                           Padding="10,10,0,0"
-                          FontSize="14">
+                          FontSize="14" Drop="ThisTripPlacesTable_Drop"
+                          AllowDrop="True" MouseDoubleClick="ThisTripPlacesTable_MouseDoubleClick">
                     <DataGrid.Resources>
                         <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                                BasedOn="{StaticResource MaterialDesignDataGridCell}">
@@ -407,7 +408,7 @@
                                   AlternatingRowBackground="#33E9967A"
                                   SelectionMode="Single"
                                   Padding="5 0 5 0"
-                                  FontSize="14">
+                                  FontSize="14" MouseMove="AvailablePlacesTable_MouseMove">
                             <DataGrid.Resources>
                                 <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
                                        BasedOn="{StaticResource MaterialDesignDataGridCell}">

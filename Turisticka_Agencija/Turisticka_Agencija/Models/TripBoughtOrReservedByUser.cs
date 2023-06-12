@@ -17,12 +17,14 @@ namespace Turisticka_Agencija.Models
         public int UserId { get; set; }
         [Key, Column(Order = 2)]
         public Action Action { get; set; }
+        public DateTime BuyDate {  get; set; }
 
-        public TripBoughtOrReservedByUser(int tripId, int userId, Action action)
+        public TripBoughtOrReservedByUser(int tripId, int userId, Action action, DateTime buyDate)
         {
             TripId = tripId;
             UserId = userId;
             Action = action;
+            BuyDate = buyDate;
         }
 
         public TripBoughtOrReservedByUser()

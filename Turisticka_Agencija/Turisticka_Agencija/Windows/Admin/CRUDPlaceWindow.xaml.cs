@@ -348,4 +348,10 @@ public partial class CRUDPlaceWindow : Window
         window.Show();
         Close();
     }
+    private void Report(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        Close();
+    }
 }

@@ -113,5 +113,11 @@ namespace Turisticka_Agencija.Windows.Admin
         {
             MessageBox.Show("Deleted");
         }
+        private void Report(object sender, RoutedEventArgs e)
+        {
+            var reportWindow = new ReportWindow();
+            reportWindow.Show();
+            Close();
+        }
     }
 }

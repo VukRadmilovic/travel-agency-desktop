@@ -418,4 +418,10 @@ public partial class CRUDRestaurantWindow : Window
         tripWindow.Show();
         Close();
     }
+    private void Report(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        Close();
+    }
 }

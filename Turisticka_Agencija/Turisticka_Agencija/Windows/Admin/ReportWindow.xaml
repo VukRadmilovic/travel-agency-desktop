@@ -11,9 +11,11 @@
         xmlns:admin="clr-namespace:Turisticka_Agencija.Windows.Admin"
         Background="{DynamicResource MaterialDesignPaper}"
         FontWeight="Thin"
+        Top="30"
+        Left="30"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Smeštaji" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600">
+        Title="Bata Travel - Izveštaji" Height="600" Width="800" AutomationProperties.Name="windows" MinWidth="600">
     <Window.Resources>
         <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
         <DataTemplate x:Key="StateTemplate">
@@ -29,6 +31,7 @@
         <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"/>
         <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"/>
         <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudAccommodation}" Executed="AccomodationCRUD_OnClick"/>
         <CommandBinding Command="{x:Static admin:ReportWindow.HelpCommand}" Executed="HelpClick"/>
         <CommandBinding Command="{x:Static admin:ReportWindow.LogoutCommand}" Executed="Logout"></CommandBinding>
     </Window.CommandBindings>
@@ -61,6 +64,7 @@
                           InputGestureText="Alt+S"
                           IsCheckable="True"
                           IsChecked="True"
+                          Click="AccomodationCRUD_OnClick"
                           x:Name="AccomodationCRUD"
                           Icon="{materialDesign:PackIcon Kind=Home}"
                               Padding="24,5,24,5"/>
@@ -76,7 +80,8 @@
                           x:Name="TripCRUD"
                           InputGestureText="Alt+P"
                               Icon="{materialDesign:PackIcon Kind=BagSuitcase}"
-                              FontWeight="Thin" Padding="24,5,24,5" Click="TripCRUD_Click"/>
+                              FontWeight="Thin" Padding="24,5,24,5"
+                          Click="TripCRUD_Click"/>
             </MenuItem>
 
             <MenuItem Header="Izveštaji"
@@ -84,6 +89,7 @@
                       Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
                 <MenuItem Header="Prodata putovanja po mesecu"
                           FontWeight="Thin"
+                          InputGestureText="Alt+I"
                           Icon="{materialDesign:PackIcon Kind=Money}"/>
             </MenuItem>
 
@@ -114,7 +120,7 @@
 
                 <StackPanel Orientation="Horizontal" Margin="5,15,0,15">
                     <TextBlock  Margin="60,0,0,0"
-                                FontSize="30" VerticalAlignment="Center">Broj zvezdica</TextBlock>
+                                FontSize="30" VerticalAlignment="Center">Godina</TextBlock>
                     <ComboBox x:Name="YearFilterField"
                              MinWidth="150"
                              Margin="40,0,0,0"
@@ -138,7 +144,7 @@
                         
                     </ComboBox>
                     <TextBlock  Margin="60,0,0,0"
-                                FontSize="30" VerticalAlignment="Center">Broj zvezdica</TextBlock>
+                                FontSize="30" VerticalAlignment="Center">Mesec</TextBlock>
                     <ComboBox x:Name="MonthFilterField"
                              MinWidth="150"
                              Margin="40,0,0,0"

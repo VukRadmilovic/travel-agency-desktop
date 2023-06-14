@@ -9,7 +9,9 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Sva Putovanja" Height="600" Width="750" MinWidth="600">
+        Top="30"
+        Left="30"
+        Title="Bata Travel - Sva Putovanja" Height="600" Width="800" MinWidth="600">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
     </Window.CommandBindings>

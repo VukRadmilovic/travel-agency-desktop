@@ -79,13 +79,6 @@ namespace Turisticka_Agencija.Windows.Shared
             }
             else
             {
-                var logoutMenuItem = new MenuItem
-                {
-                    Header = "Odjava",
-                    Name = "logoutMenuItem",
-                };
-                logoutMenuItem.Click += logoutMenuItem_Click;
-                Menu.Items.Add(logoutMenuItem);
                 var tripMenuItem = new MenuItem
                 {
                     Header = "Sva Putovanja",
@@ -93,6 +86,14 @@ namespace Turisticka_Agencija.Windows.Shared
                 };
                 tripMenuItem.Click += tripMenuItem_Click;
                 Menu.Items.Add(tripMenuItem);
+
+                var logoutMenuItem = new MenuItem
+                {
+                    Header = "Odjava",
+                    Name = "logoutMenuItem",
+                };
+                logoutMenuItem.Click += logoutMenuItem_Click;
+                Menu.Items.Add(logoutMenuItem);
             }
 
             var helpMenuItem = new MenuItem

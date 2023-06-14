@@ -13,6 +13,8 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
+        Top="30"
+        Left="30"
         Title="Bata Travel - Pregled jednog putovanja" Height="650" Width="1200" MinWidth="600">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>

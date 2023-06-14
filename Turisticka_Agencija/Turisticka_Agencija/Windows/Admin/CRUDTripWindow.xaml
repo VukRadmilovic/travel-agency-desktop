@@ -12,11 +12,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:validation="clr-namespace:Turisticka_Agencija.ValidationRules"
         mc:Ignorable="d"
+        Top="30"
+        Left="30"
         Background="{DynamicResource MaterialDesignPaper}"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Unos putovanja" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600" PreviewKeyDown="Window_PreviewKeyDown">
+        Title="Bata Travel - Unos putovanja" Height="600" Width="800" AutomationProperties.Name="windows" MinWidth="600" PreviewKeyDown="Window_PreviewKeyDown">
     <Window.Resources>
         <converters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
     </Window.Resources>
@@ -26,6 +28,7 @@
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToCrudAccommodation}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_Click"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"></CommandBinding>
+        <CommandBinding Command="{x:Static admin:CRUDTripWindow.NavigateToReport}" Executed="Report_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.ClearFieldsCommand}" Executed="ClearButton_Click"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.SaveCommand}" Executed="SaveButton_Click"></CommandBinding>
         <CommandBinding Command="{x:Static admin:CRUDTripWindow.ModifyCommand}" Executed="ModifyButton_Click"></CommandBinding>
@@ -93,7 +96,9 @@
                       FontSize="{Binding ActualHeight, Converter={StaticResource FontSizeConverter}, ElementName=menuItem, Mode=OneWay}"
                       Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
                 <MenuItem Header="Prodata putovanja po mesecu"
+                          InputGestureText="Alt+I"
                           FontWeight="Thin"
+                          Click="Report_OnClick"
                           Icon="{materialDesign:PackIcon Kind=Money}"/>
             </MenuItem>
 

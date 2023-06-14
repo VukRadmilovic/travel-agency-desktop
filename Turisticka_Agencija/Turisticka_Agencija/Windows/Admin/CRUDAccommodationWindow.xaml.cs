@@ -34,6 +34,7 @@ namespace Turisticka_Agencija.Windows.Admin
         public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
         public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
         public static RoutedCommand NavigateToCrudPlace { get; } = new();
+        public static RoutedCommand NavigateToReport { get; } = new();
         public static RoutedCommand NavigateToCrudTrip { get; } = new();
         public static RoutedCommand LogoutCommand { get; } = new();
         public static RoutedCommand ClearFieldsCommand { get; } = new();
@@ -53,6 +54,7 @@ namespace Turisticka_Agencija.Windows.Admin
 
             NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
             NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
+            NavigateToReport.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Alt));
             NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
             ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
             SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
@@ -73,6 +75,13 @@ namespace Turisticka_Agencija.Windows.Admin
         {
             NameFilterField.Clear();
             NameFilterField.Focus();
+        }
+
+        private void Report_OnClick(object sender, RoutedEventArgs e)
+        {
+            var reportWindow = new ReportWindow();
+            reportWindow.Show();
+            Close();
         }
 
         private void RestaurantCRUD_OnClick(object sender, RoutedEventArgs e)

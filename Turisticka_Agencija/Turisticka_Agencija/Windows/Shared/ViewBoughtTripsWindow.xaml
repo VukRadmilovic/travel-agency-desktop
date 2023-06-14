@@ -9,8 +9,10 @@
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
+        Top="30"
+        Left="30"
         xmlns:admin="clr-namespace:Turisticka_Agencija.Windows.Admin"
-        Title="Bata Travel - Kupljena Putovanja" Height="600" Width="750" MinWidth="600">
+        Title="Bata Travel - Kupljena Putovanja" Height="600" Width="800" MinWidth="600">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
     </Window.CommandBindings>
@@ -78,7 +80,7 @@
                                     IsReadOnly="True"/>
 
                 <DataGridCheckBoxColumn Binding="{Binding IsBought, Mode=OneWay}"
-                                Header="Rezervisano"
+                                Header="Kupljeno"
                                 CellStyle="{StaticResource CellStyle}"
                                 IsReadOnly="True"
                                 CanUserResize="False">

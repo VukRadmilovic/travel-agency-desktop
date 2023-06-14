@@ -42,6 +42,7 @@ public partial class CRUDPlaceWindow : Window
         NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
         NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
         NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
+        NavigateToReport.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Alt));
         ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
         SearchCommand.InputGestures.Add(new KeyGesture(Key.F, ModifierKeys.Control));
         SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
@@ -54,6 +55,7 @@ public partial class CRUDPlaceWindow : Window
     public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
     public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
     public static RoutedCommand LogoutCommand { get; } = new();
+    public static RoutedCommand NavigateToReport { get; } = new();
     public static RoutedCommand ClearFieldsCommand { get; } = new();
     public static RoutedCommand SaveCommand { get; } = new();
     public static RoutedCommand ModifyCommand { get; } = new();
@@ -71,6 +73,13 @@ public partial class CRUDPlaceWindow : Window
     {
         NameFilterField.Clear();
         NameFilterField.Focus();
+    }
+
+    private void Report_OnClick(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        Close();
     }
 
     private void AccommodationCRUD_OnClick(object sender, RoutedEventArgs e)

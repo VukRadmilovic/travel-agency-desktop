@@ -44,6 +44,7 @@ namespace Turisticka_Agencija.Windows.Admin
             YearFilterField.SelectedIndex = 0;
             MonthFilterField.SelectedIndex = 0;
             NavigateToCrudRestaurant.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Alt));
+            NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
             NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
             NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
             LogoutCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Alt));
@@ -84,6 +85,13 @@ namespace Turisticka_Agencija.Windows.Admin
         {
             var placeWindow = new CRUDPlaceWindow();
             placeWindow.Show();
+            Close();
+        }
+
+        private void AccomodationCRUD_OnClick(object sender, RoutedEventArgs e)
+        {
+            var acommodationWindow = new CRUDAccommodationWindow();
+            acommodationWindow.Show();
             Close();
         }
         private void RestaurantCRUD_OnClick(object sender, RoutedEventArgs e)

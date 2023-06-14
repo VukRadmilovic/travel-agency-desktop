@@ -9,10 +9,12 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:validation="clr-namespace:Turisticka_Agencija.ValidationRules"
         Background="{DynamicResource MaterialDesignPaper}"
+        Top="30"
+        Left="30"
         FontWeight="Thin"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Icon="/logo.png"
-        Title="Bata Travel - Restorani" Height="600" Width="750" AutomationProperties.Name="windows" MinWidth="600">
+        Title="Bata Travel - Restorani" Height="600" Width="800" AutomationProperties.Name="windows" MinWidth="600">
     <Window.Resources>
         <localM:AutocompleteProvider x:Key="AutocompleteProvider"></localM:AutocompleteProvider>
         <DataTemplate x:Key="StateTemplate">
@@ -27,6 +29,7 @@
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudAccommodation}" Executed="AccommodationCRUD_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"></CommandBinding>
+        <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.NavigateToReport}" Executed="Report_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.SearchCommand}" Executed="SearchShortcut"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.ClearFieldsCommand}" Executed="ClearFieldsButton_OnClick"></CommandBinding>
         <CommandBinding Command="{x:Static local:CRUDRestaurantWindow.SaveCommand}" Executed="CreateButton_OnClick"></CommandBinding>
@@ -89,7 +92,9 @@
                       FontSize="{Binding ActualHeight, Converter={StaticResource FontSizeConverter}, ElementName=menuItem, Mode=OneWay}"
                       Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
                 <MenuItem Header="Prodata putovanja po mesecu"
+                          InputGestureText="Alt+I"
                           FontWeight="Thin"
+                          Click="Report_OnClick"
                           Icon="{materialDesign:PackIcon Kind=Money}"/>
             </MenuItem>
 

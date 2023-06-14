@@ -35,6 +35,7 @@ public partial class CRUDRestaurantWindow : Window
     private Restaurant _selectedRestaurant;
     private readonly CustomDataContext _dataContext = new();
     public static RoutedCommand NavigateToCrudRestaurant { get; } = new();
+    public static RoutedCommand NavigateToReport { get; } = new();
     public static RoutedCommand NavigateToCrudTrip { get; } = new();
     public static RoutedCommand NavigateToCrudAccommodation { get; } = new();
     public static RoutedCommand NavigateToCrudPlace { get; } = new();
@@ -56,6 +57,7 @@ public partial class CRUDRestaurantWindow : Window
 
         NavigateToCrudTrip.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Alt));
         NavigateToCrudAccommodation.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Alt));
+        NavigateToReport.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Alt));
         NavigateToCrudPlace.InputGestures.Add(new KeyGesture(Key.A, ModifierKeys.Alt));
         ClearFieldsCommand.InputGestures.Add(new KeyGesture(Key.O, ModifierKeys.Control));
         SaveCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
@@ -76,6 +78,13 @@ public partial class CRUDRestaurantWindow : Window
     {
         NameFilterField.Clear();
         NameFilterField.Focus();
+    }
+
+    private void Report_OnClick(object sender, RoutedEventArgs e)
+    {
+        var reportWindow = new ReportWindow();
+        reportWindow.Show();
+        Close();
     }
 
     private void AccommodationCRUD_OnClick(object sender, RoutedEventArgs e)

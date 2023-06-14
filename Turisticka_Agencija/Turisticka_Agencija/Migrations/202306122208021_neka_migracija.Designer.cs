@@ -7,13 +7,13 @@ namespace Turisticka_Agencija.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class mig : IMigrationMetadata
+    public sealed partial class neka_migracija : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(mig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(neka_migracija));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306121857351_mig"; }
+            get { return "202306122208021_neka_migracija"; }
         }
         
         string IMigrationMetadata.Source

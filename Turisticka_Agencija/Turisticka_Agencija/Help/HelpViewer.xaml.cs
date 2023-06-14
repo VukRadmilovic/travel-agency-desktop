@@ -25,12 +25,12 @@ namespace Turisticka_Agencija.Help
         {
             InitializeComponent();
             string curDir = Directory.GetCurrentDirectory();
-            string path = String.Format("C:\\Fakultet\\V\\HCI\\hci-tim14-agencija\\Turisticka_Agencija\\Turisticka_Agencija\\Help\\{0}.htm", key);
+            string path = String.Format("C:\\Users\\Dracooya\\Desktop\\Fax\\3. godina\\6. semestar\\Interakcija čovek računar\\Veliki projekat\\hci-tim14-agencija\\Turisticka_Agencija\\Turisticka_Agencija\\Help\\{0}.htm", key);
             if (!File.Exists(path))
             {
                 key = "error";
             }
-            Uri u = new Uri(String.Format("file:///C:\\Fakultet\\V\\HCI\\hci-tim14-agencija\\Turisticka_Agencija\\Turisticka_Agencija\\Help\\{0}.htm", key));
+            Uri u = new Uri(String.Format("file://C:\\Users\\Dracooya\\Desktop\\Fax\\3. godina\\6. semestar\\Interakcija čovek računar\\Veliki projekat\\hci-tim14-agencija\\Turisticka_Agencija\\Turisticka_Agencija\\Help\\{0}.htm", key));
             wbHelp.Navigate(u);
         }
 

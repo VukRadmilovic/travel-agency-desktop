@@ -84,6 +84,13 @@ namespace Turisticka_Agencija.Windows.Shared
                 };
                 logoutMenuItem.Click += logoutMenuItem_Click;
                 Menu.Items.Add(logoutMenuItem);
+                var tripMenuItem = new MenuItem
+                {
+                    Header = "Kopljena Putovanja",
+                    Name = "tripMenuItem",
+                };
+                tripMenuItem.Click += tripMenuItem_Click;
+                Menu.Items.Add(tripMenuItem);
             }
 
             var helpMenuItem = new MenuItem

@@ -1,45 +1,50 @@
-# Uputstvo za pokretanje
+# Travel agency desktop application
 
-Ovo uputstvo će vam pokazati kako da pokrenete ovu WPF aplikaciju koja je rađena u Visual Studio 2022 i koristi Entity Framework. Molimo Vas da pratite korake ispod da biste uspešno pokrenuli projekat.
+## Tech Stack
+- C# .NET WPF
+- Entity Framework
 
-## Prethodne pripreme
-Pre nego što krenete, uverite se da imate instalirane sledeće komponente:
+## Description
 
-1. **Visual Studio 2022**: Preuzmite i instalirajte Visual Studio 2022 sa zvanične Microsoftove veb lokacije.
-2. **Entity Framework**: Ako nemate instaliran Entity Framework, možete ga instalirati pomoću Package Manager Console-a u Visual Studio-u. Otvorite Package Manager Console iz menija **Tools > NuGet Package Manager > Package Manager Console** i unesite sledeću komandu: `Install-Package EntityFramework`
+This project is a desktop travel agency application. It is designed to support the work of travel agents and allow clients to browse and book travel arrangements for various destinations.
 
-## Pokretanje projekta
+There are two types of users in the system:
 
-1. Klonirajte ili preuzmite izvorni kod projekta sa GitHub-a.
-2. Otvorite Visual Studio 2022.
-3. Izaberite opciju **Open a project or solution** sa početnog ekrana ili idite na **File > Open > Project/Solution**.
-4. Pronađite i otvorite folder u koji ste preuzeli ili klonirali izvorni kod projekta.
+1. Registered Users (Clients/Travelers): They can view available travel arrangements and make reservations.
 
-## Konfiguracija lokalne baze podataka
+2. Agents: They can add new travel arrangements, update existing ones, add and update accommodations, restaurants, and tourist attractions.
 
-Da biste pravilno koristili aplikaciju, morate izvršiti inicijalnu migraciju kako biste kreirali bazu podataka i popunili je početnim podacima. Sledite korake ispod:
+The application provides the following functionalities:
 
-1. Otvorite **Package Manager Console** iz menija **Tools > NuGet Package Manager > Package Manager Console**.
-2. Unutar te novootvorene konzole na dnu ekrana ukucajte `Add-Migration migracija` i pritisnite enter
-3. Kada je migracija kreirana, kucajte `Update-Database` i pritisnite enter
+1. Booking and purchasing travel arrangements.
+2. Viewing purchased and reserved travel arrangements.
+3. Browsing all available travel arrangements.
+4. Viewing travel arrangements on a map.
+5. Adding, updating, and deleting travel arrangements.
+6. Adding, updating, and deleting tourist attractions.
+7. Adding, updating, and deleting accommodations and restaurants.
+8. Viewing sold travel arrangements within a specific month.
+9. Viewing the number of bookings for a particular travel arrangement.
 
-### Napomene 
-- Proverite da li je SQL Server pokrenut preko SQL Server object explorer-a i da li imate odgovarajući Connection String u konfiguracionom fajlu projekta.
-- Da biste se ulogovali morate imati korisnika koji može da se uloguje. Korisnika dodajte preko SQL Server Object Explorera, direktno unoseći podatke u user tabelu. Do podataka ćete doći desnim klikom na user tabelu pa levim klikom na "View Data".
-- Ukoliko budete imali poteškoća sa kreiranjem migracije, probajte da obrišete sve prethodne migracije iz foldera migrations kao i sve tabele iz SQL servera, pa onda kreirate novu migraciju
+## How to Run
 
-## Pokretanje aplikacije
+1. Clone the repository:
+```
+git clone https://github.com/VukRadmilovic/travel-agency-desktop.git
+```
+2. Open the project in Visual Studio.
 
-Sada kada je projekat konfigurisan i baza podataka je spremna, možete pokrenuti aplikaciju. Sledite korake ispod:
+3. Set up the database connection in the configuration file (`Utils/Context.cs`).
 
-1. Proverite da li je WPF projekat označen kao **StartUp Project**. Desnim klikom na projekat u Solution Explorer-u, izaberite **Set as StartUp Project**.
-2. Izaberite odgovarajuću konfiguraciju iz **Solution Configurations** padajućeg menija. Na primer, **Debug**.
-3. Kliknite na **Start** dugme ili pritisnite F5 da biste pokrenuli aplikaciju.
+4. Build the solution.
 
-Aplikacija će se pokrenuti i trebali biste biti u mogućnosti da je koristite.
+5. Run the migration commands to create the database schema:
+```
+Add-Migration InitialMigration
+Update-Database
+```
+6. Add an initial user if you wish to log in as an agent via the SQL Server Object Explorer.
 
-## Napomene
+7. Run the application.
 
-- Ako se pojave greške tokom migracije ili prilikom pokretanja aplikacije, proverite da li su sve potrebne zavisnosti instalirane i ispravno konfigurisane.
-- Ako ne možete da pronađete bazu podataka nakon migracije, proverite Connection String u konfiguracionom fajlu i uverite se da je ispravno podešen.
-- Ukoliko imate dodatna pitanja ili problema, molimo vas da posetite zvaničnu dokumentaciju Entity Framework-a i Visual Studio-a za više informacija.
+Note: Additional configuration steps may be required depending on your environment.

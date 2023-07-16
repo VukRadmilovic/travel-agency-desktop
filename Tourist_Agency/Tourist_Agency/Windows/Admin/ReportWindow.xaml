@@ -1,0 +1,213 @@
+﻿<Window x:Class="Tourist_Agency.Windows.Admin.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:maps="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        xmlns:local="clr-namespace:Turisticka_Agencija"
+        xmlns:acb="http://wpfcontrols.com/"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:utils="clr-namespace:Tourist_Agency.Utils"
+        xmlns:valueConverters="clr-namespace:Tourist_Agency.ValueConverters"
+        xmlns:admin="clr-namespace:Tourist_Agency.Windows.Admin"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontWeight="Thin"
+        Top="30"
+        Left="30"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Icon="/logo.png"
+        Title="Bata Travel - Izveštaji" Height="600" Width="800" AutomationProperties.Name="windows" MinWidth="600">
+    <Window.Resources>
+        <utils:AutocompleteProvider x:Key="AutocompleteProvider"></utils:AutocompleteProvider>
+        <DataTemplate x:Key="StateTemplate">
+            <Grid>
+                <TextBlock Text="{Binding Path=FormattedAddress}" />
+            </Grid>
+        </DataTemplate>
+        <valueConverters:MenuItemFontSizeConverter x:Key="FontSizeConverter" />
+    </Window.Resources>
+    <Window.CommandBindings>
+
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudRestaurant}" Executed="RestaurantCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudTrip}" Executed="TripCRUD_Click"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudPlace}" Executed="PlaceCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.NavigateToCrudAccommodation}" Executed="AccomodationCRUD_OnClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.HelpCommand}" Executed="HelpClick"/>
+        <CommandBinding Command="{x:Static admin:ReportWindow.LogoutCommand}" Executed="Logout"></CommandBinding>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Menu  Grid.Row="0" Grid.ColumnSpan="3"
+                   HorizontalContentAlignment="Stretch"
+                   x:Name="Menu"
+                   Background="AliceBlue"
+                   VerticalContentAlignment="Stretch" Padding="0,1,0,0">
+            <MenuItem x:Name="menuItem" Header="Novi unos"
+                      Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
+                <MenuItem Header="_Restoran"
+                          x:Name="RestaurantCRUD"
+                          Click="RestaurantCRUD_OnClick"
+                          FontWeight="Thin"
+                          InputGestureText="Alt+R"
+                          Icon="{materialDesign:PackIcon Kind=Restaurant}"
+                         Padding="24,5,24,5"/>
+
+                <MenuItem Header="Smeštaj"
+                          InputGestureText="Alt+S"
+                          IsCheckable="True"
+                          IsChecked="True"
+                          Click="AccomodationCRUD_OnClick"
+                          x:Name="AccomodationCRUD"
+                          Icon="{materialDesign:PackIcon Kind=Home}"
+                              Padding="24,5,24,5"/>
+
+                <MenuItem Header="Atrakcija"
+                          InputGestureText="Alt+A"
+                          x:Name="PlaceCRUD"
+                          Click="PlaceCRUD_OnClick"
+                              Icon="{materialDesign:PackIcon Kind=Location}"
+                              FontWeight="Thin" Padding="24,5,24,5"/>
+
+                <MenuItem Header="Putovanje"
+                          x:Name="TripCRUD"
+                          InputGestureText="Alt+P"
+                              Icon="{materialDesign:PackIcon Kind=BagSuitcase}"
+                              FontWeight="Thin" Padding="24,5,24,5"
+                          Click="TripCRUD_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="Izveštaji"
+                      Click="Report"
+                      Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
+                <MenuItem Header="Prodata putovanja po mesecu"
+                          FontWeight="Thin"
+                          InputGestureText="Alt+I"
+                          Icon="{materialDesign:PackIcon Kind=Money}"/>
+            </MenuItem>
+
+            <MenuItem Header="Pomoć"
+                      Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
+            </MenuItem>
+
+            <MenuItem Header="Odjava"
+                      InputGestureText="Alt+O"
+                      Click="Logout"
+                      Height="{Binding ActualHeight, ElementName=Menu, Mode=OneWay}">
+            </MenuItem>
+        </Menu>
+        <Viewbox
+            Grid.ColumnSpan="2"
+                                 Grid.Row="1"
+                                 Width="2800"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Left" StretchDirection="DownOnly">
+            <GroupBox Header="Filteri pretrage"
+                                              UseLayoutRounding="True"
+                                              materialDesign:ColorZoneAssist.Mode="Custom"
+                                              materialDesign:ColorZoneAssist.Background="DarkSalmon"
+                                              materialDesign:ColorZoneAssist.Foreground="White"
+                                              Style="{StaticResource MaterialDesignGroupBox}"
+                                              FontSize="30"
+                                              FontWeight="Thin" MinWidth="3500">
+
+                <StackPanel Orientation="Horizontal" Margin="5,15,0,15">
+                    <TextBlock  Margin="60,0,0,0"
+                                FontSize="30" VerticalAlignment="Center">Godina</TextBlock>
+                    <ComboBox x:Name="YearFilterField"
+                             MinWidth="150"
+                             Margin="40,0,0,0"
+                             FontSize="30"
+                             Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                             SelectionChanged="TableFilterField_OnSelectionChanged" IsTextSearchEnabled="False">
+                        <ComboBoxItem>2023</ComboBoxItem>
+                        <ComboBoxItem>2022</ComboBoxItem>
+                        <ComboBoxItem>2021</ComboBoxItem>
+                        <ComboBoxItem>2020</ComboBoxItem>
+                        <ComboBoxItem>2019</ComboBoxItem>
+                        <ComboBoxItem>2018</ComboBoxItem>
+                        <ComboBoxItem>2017</ComboBoxItem>
+                        <ComboBoxItem>2016</ComboBoxItem>
+                        <ComboBoxItem>2015</ComboBoxItem>
+                        <ComboBoxItem>2014</ComboBoxItem>
+                        <ComboBoxItem>2013</ComboBoxItem>
+                        <ComboBoxItem>2012</ComboBoxItem>
+                        <ComboBoxItem>2011</ComboBoxItem>
+                        <ComboBoxItem>2010</ComboBoxItem>
+                        
+                    </ComboBox>
+                    <TextBlock  Margin="60,0,0,0"
+                                FontSize="30" VerticalAlignment="Center">Mesec</TextBlock>
+                    <ComboBox x:Name="MonthFilterField"
+                             MinWidth="150"
+                             Margin="40,0,0,0"
+                             FontSize="30"
+                             Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                             SelectionChanged="TableFilterField_OnSelectionChanged" IsTextSearchEnabled="False">
+                        <ComboBoxItem>1</ComboBoxItem>
+                        <ComboBoxItem>2</ComboBoxItem>
+                        <ComboBoxItem>3</ComboBoxItem>
+                        <ComboBoxItem>4</ComboBoxItem>
+                        <ComboBoxItem>5</ComboBoxItem>
+                        <ComboBoxItem>6</ComboBoxItem>
+                        <ComboBoxItem>7</ComboBoxItem>
+                        <ComboBoxItem>8</ComboBoxItem>
+                        <ComboBoxItem>9</ComboBoxItem>
+                        <ComboBoxItem>10</ComboBoxItem>
+                        <ComboBoxItem>11</ComboBoxItem>
+                        <ComboBoxItem>12</ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+
+        </Viewbox>
+
+        <DataGrid x:Name="TripsTable"
+                  AutoGenerateColumns="False"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  AlternationCount="2"
+                  AlternatingRowBackground="#33E9967A"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  Padding="10,10,0,0" FontSize="14">
+            <DataGrid.Resources>
+                <Style x:Key="CellStyle" TargetType="{x:Type DataGridCell}"
+                       BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Setter Property="KeyboardNavigation.IsTabStop"
+                            Value="False" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naziv"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Name, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Cena"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Price, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Broj Kupljenih"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding Count, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+
+                <DataGridTextColumn Header="Ukupna Cena"
+                                    CellStyle="{StaticResource CellStyle}"
+                                    Binding="{Binding FullPrice, Mode=OneWay}"
+                                    IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

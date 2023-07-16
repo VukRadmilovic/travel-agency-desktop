@@ -42,7 +42,7 @@ public partial class LoginWindow : Window
             if (CredentialsErrorSnackbar.MessageQueue is { } messageQueue)
             {
                 await Task.Factory.StartNew(() => messageQueue.Enqueue("Uspešna prijava."));
-                if (((UserType)user.Type) == UserType.Agent)
+                if (user.Type == UserType.Agent)
                 {
                     CRUDTripWindow window = new();
                     window.Show();
